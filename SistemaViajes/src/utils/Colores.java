@@ -21,4 +21,6 @@ public class Colores {
     public static Color backgroundSecundario = new Color(247, 251, 255);
     public static Color backgroundPanel = new Color(70, 82, 105);
     
+    public static Color tituloLetra = new Color(70, 82, 105);
+    
 }

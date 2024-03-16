@@ -19,7 +19,7 @@ public class Viaje {
     private int gasolinaConsumida;
     private LocalDateTime  fechaInicio;
     private LocalDateTime  fechaFinal;
-
+    private boolean activo;
     public Viaje(int id, String puntoInicio, String puntoFinal, Vehiculo vehiculo, int distancia, LocalDateTime fechaInicio) {
         this.id = id;
         this.puntoInicio = puntoInicio;
@@ -27,11 +27,21 @@ public class Viaje {
         this.vehiculo = vehiculo;
         this.distancia = distancia;
         this.fechaInicio = fechaInicio;
+        activo = true;
     }
     
     public void setDatosFinalizar(LocalDateTime fecha, int gas){
         this.gasolinaConsumida = gas;
         this.fechaFinal = fecha;
+        activo = false;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
     
 

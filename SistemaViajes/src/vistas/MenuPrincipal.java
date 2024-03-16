@@ -27,8 +27,20 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     JPanel panelInicio;
     JPanel panelRutas;
     JPanel panelViajes;
+    boolean inicioActive = false;
+    boolean rutasActive = false;
+    boolean viajesActive = false;
+    
     public MenuPrincipal() {
-               try{
+
+        panelRutas();
+        panelViajes();
+        this.remove(panelRutas);
+        this.remove(panelViajes);
+        panelBienvenida();
+        inicioActive = true;
+        this.repaint();
+        /*try{
             panelViajes();
             panelRutas();
             panelBienvenida();
@@ -37,7 +49,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         }
         catch (Exception ex) {
 
-        }
+        }*/
         
         
         
@@ -133,91 +145,119 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     }
     
     void panelBienvenida(){
+        if (!inicioActive) {
+            inicioActive = true;
+            rutasActive = false;
+            viajesActive = false;
 
-        
-        panelInicio = new JPanel();
-        panelInicio.setBounds(250, 0, 950, 700);
-        panelInicio.setLayout(null);
-        panelInicio.setBackground(Colores.background);
+            panelInicio = new JPanel();
+            panelInicio.setBounds(250, 0, 950, 700);
+            panelInicio.setLayout(null);
+            panelInicio.setBackground(Colores.background);
+            
+            
+            //-------------------------Inicio Contendido
+            
+            
+            JLabel tituloLabel = new JLabel("Bienvenido");
+            tituloLabel.setBounds(20,20,400,30);
+            tituloLabel.setForeground(Colores.tituloLetra);
+            tituloLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
+            panelInicio.add(tituloLabel);
+            
+            
+            
+            
+            //------------------------- Fin Contendido
+            
+            this.add(panelInicio);
+            try {
+                this.remove(panelViajes);
+                this.remove(panelRutas);
+                revalidate();
 
-        JButton cerrarSesionButton = new JButton("Boton Inicio");
-        cerrarSesionButton.setBounds(250, 100, 250, 50);
-        cerrarSesionButton.setBackground(Colores.principalBotones);
-        cerrarSesionButton.setFont(Fuentes.getPrincipalFontSize(12, true));
-        cerrarSesionButton.setForeground(Colores.white);
-        panelInicio.add(cerrarSesionButton);
+            } catch (Exception ex) {
+            }
 
-        this.add(panelInicio);
-        try{
-            panelViajes.setVisible(false);
-            panelRutas.setVisible(false);
-            panelInicio.setVisible(true);
+            this.repaint();
+            
         }
-        catch (Exception ex) {
-
-        }
-
-        this.repaint();
      }
     
     void panelRutas(){
-        
+        if(!rutasActive){
 
-        
-        panelRutas = new JPanel();
-        panelRutas.setBounds(250, 0, 950, 700);
-        panelRutas.setLayout(null);
-        panelRutas.setBackground(Colores.background);
+            inicioActive = false;
+            rutasActive = true;
+            viajesActive = false;
+            
+            panelRutas = new JPanel();
+            panelRutas.setBounds(250, 0, 950, 700);
+            panelRutas.setLayout(null);
+            panelRutas.setBackground(Colores.background);
 
-        JButton cerrarSesionButton = new JButton("Boton Rutas");
-        cerrarSesionButton.setBounds(250, 300, 250, 50);
-        cerrarSesionButton.setBackground(Colores.principalBotones);
-        cerrarSesionButton.setFont(Fuentes.getPrincipalFontSize(12, true));
-        cerrarSesionButton.setForeground(Colores.white);
-        panelRutas.add(cerrarSesionButton);
+            //-------------------------Inicio Contendido
+            
+            JButton cerrarSesionButton = new JButton("Boton Rutas");
+            cerrarSesionButton.setBounds(250, 300, 250, 50);
+            cerrarSesionButton.setBackground(Colores.principalBotones);
+            cerrarSesionButton.setFont(Fuentes.getPrincipalFontSize(12, true));
+            cerrarSesionButton.setForeground(Colores.white);
+            panelRutas.add(cerrarSesionButton);
 
-        this.add(panelRutas);
-        
-        try{
-            panelViajes.setVisible(false);
-            panelRutas.setVisible(true);
-            panelInicio.setVisible(false);
+            
+            //-------------------------Fin Contendido
+            
+            this.add(panelRutas);
+
+            try {
+                this.remove(panelViajes);
+                this.remove(panelInicio);
+                revalidate();
+            } catch (Exception ex) {
+
+            }
+
+            this.repaint();
+
         }
-        catch (Exception ex) {
-
-        }
-
-        this.repaint();
     }
     
     void panelViajes(){
+        if(!viajesActive) {
+            inicioActive = false;
+            rutasActive = false;
+            viajesActive = true;
+            
+            panelViajes = new JPanel();
+            panelViajes.setBounds(250, 0, 950, 700);
+            panelViajes.setLayout(null);
+            panelViajes.setBackground(Colores.background);
 
-        
-        panelViajes = new JPanel();
-        panelViajes.setBounds(250, 0, 950, 700);
-        panelViajes.setLayout(null);
-        panelViajes.setBackground(Colores.background);
+            //-------------------------Inicio Contendido
+            
+            JButton cerrarSesionButton = new JButton("Boton Viajes");
+            cerrarSesionButton.setBounds(250, 500, 250, 50);
+            cerrarSesionButton.setBackground(Colores.principalBotones);
+            cerrarSesionButton.setFont(Fuentes.getPrincipalFontSize(12, true));
+            cerrarSesionButton.setForeground(Colores.white);
+            panelViajes.add(cerrarSesionButton);
 
-        JButton cerrarSesionButton = new JButton("Boton Viajes");
-        cerrarSesionButton.setBounds(250, 500, 250, 50);
-        cerrarSesionButton.setBackground(Colores.principalBotones);
-        cerrarSesionButton.setFont(Fuentes.getPrincipalFontSize(12, true));
-        cerrarSesionButton.setForeground(Colores.white);
-        panelViajes.add(cerrarSesionButton);
+            //-------------------------Inicio Contendido
+            
+            this.add(panelViajes);
+            try {
 
-        this.add(panelViajes);
-        try{
-            panelViajes.setVisible(true);
-            panelRutas.setVisible(false);
-            panelInicio.setVisible(false);
+                this.remove(panelRutas);
+                this.remove(panelInicio);
+                revalidate();
+
+            } catch (Exception ex) {
+
+            }
+
+            this.repaint();
         }
-        catch (Exception ex) {
-
-        }
-        
-        
-
-        this.repaint();
      }
  
     
