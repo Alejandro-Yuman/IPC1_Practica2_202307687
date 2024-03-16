@@ -24,8 +24,23 @@ import utils.Toolbox;
  */
 public class MenuPrincipal extends JFrame implements ActionListener{
     JTabbedPane tabbedPane;
-
+    JPanel panelInicio;
+    JPanel panelRutas;
+    JPanel panelViajes;
     public MenuPrincipal() {
+               try{
+            panelViajes();
+            panelRutas();
+            panelBienvenida();
+            panelViajes.setVisible(false);
+            panelRutas.setVisible(false);
+        }
+        catch (Exception ex) {
+
+        }
+        
+        
+        
         /*tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
         tabbedPane.setFont(Fuentes.getPrincipalFontSize(12, true));
         
@@ -52,7 +67,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         panelPrincipalderecha.add(logoLabel);
 
         JSeparator separador = new JSeparator();
-        separador.setBounds(20, 90, 200, 10);
+        separador.setBounds(25, 90, 200, 10);
         separador.setBackground(Colores.white);
         separador.setForeground(Colores.white);
         panelPrincipalderecha.add(separador);
@@ -71,10 +86,10 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         inicioButton.setBorder(null);
         inicioButton.setFont(Fuentes.getPrincipalFontSize(12, true));
         inicioButton.setForeground(Colores.white);
-        inicioButton.addActionListener(this);
         inicioButton.setHorizontalAlignment(SwingConstants.LEFT);
         inicioButton.setIcon(Toolbox.adjustImage("../img/Inicio.png", 30, 30));
         inicioButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        inicioButton.addActionListener(this);
         panelBotones.add(inicioButton);
         
         JButton rutasButton = new JButton("Rutas");
@@ -83,10 +98,10 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         rutasButton.setBorder(null);
         rutasButton.setFont(Fuentes.getPrincipalFontSize(12, true));
         rutasButton.setForeground(Colores.white);
-        rutasButton.addActionListener(this);
         rutasButton.setHorizontalAlignment(SwingConstants.LEFT);
         rutasButton.setIcon(Toolbox.adjustImage("../img/Rutas.png", 30, 30));
         rutasButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        rutasButton.addActionListener(this);
         panelBotones.add(rutasButton);
         
         JButton viajesButton = new JButton("Viajes");
@@ -95,10 +110,10 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         viajesButton.setBorder(null);
         viajesButton.setFont(Fuentes.getPrincipalFontSize(12, true));
         viajesButton.setForeground(Colores.white);
-        viajesButton.addActionListener(this);
         viajesButton.setHorizontalAlignment(SwingConstants.LEFT);
         viajesButton.setIcon(Toolbox.adjustImage("../img/Viajes.png", 30, 30));
         viajesButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        viajesButton.addActionListener(this);
         panelBotones.add(viajesButton);
         
         //-------------------------------------Fin Botones
@@ -117,40 +132,108 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         this.setVisible(true);
     }
     
-    JPanel panelBienvenida(){
-        JPanel panelBienvenida = new JPanel();
-        panelBienvenida.setLayout(null);
-        panelBienvenida.setBackground(Colores.background);
-        return panelBienvenida;
-     }
-    
-    JPanel panelRutas(){
-        JPanel panelRutas = new JPanel();
-        panelRutas.setLayout(null);
-        panelRutas.setBackground(Colores.background);
+    void panelBienvenida(){
+
         
-                
-        JButton cerrarSesionButton = new JButton("Hola Tilin");
-        cerrarSesionButton.setBounds(10,10,150,50);
+        panelInicio = new JPanel();
+        panelInicio.setBounds(250, 0, 950, 700);
+        panelInicio.setLayout(null);
+        panelInicio.setBackground(Colores.background);
+
+        JButton cerrarSesionButton = new JButton("Boton Inicio");
+        cerrarSesionButton.setBounds(250, 100, 250, 50);
         cerrarSesionButton.setBackground(Colores.principalBotones);
         cerrarSesionButton.setFont(Fuentes.getPrincipalFontSize(12, true));
         cerrarSesionButton.setForeground(Colores.white);
-        //cerrarSesionButton.addActionListener(this);
+        panelInicio.add(cerrarSesionButton);
+
+        this.add(panelInicio);
+        try{
+            panelViajes.setVisible(false);
+            panelRutas.setVisible(false);
+            panelInicio.setVisible(true);
+        }
+        catch (Exception ex) {
+
+        }
+
+        this.repaint();
+     }
+    
+    void panelRutas(){
+        
+
+        
+        panelRutas = new JPanel();
+        panelRutas.setBounds(250, 0, 950, 700);
+        panelRutas.setLayout(null);
+        panelRutas.setBackground(Colores.background);
+
+        JButton cerrarSesionButton = new JButton("Boton Rutas");
+        cerrarSesionButton.setBounds(250, 300, 250, 50);
+        cerrarSesionButton.setBackground(Colores.principalBotones);
+        cerrarSesionButton.setFont(Fuentes.getPrincipalFontSize(12, true));
+        cerrarSesionButton.setForeground(Colores.white);
         panelRutas.add(cerrarSesionButton);
-        return panelRutas;
+
+        this.add(panelRutas);
+        
+        try{
+            panelViajes.setVisible(false);
+            panelRutas.setVisible(true);
+            panelInicio.setVisible(false);
+        }
+        catch (Exception ex) {
+
+        }
+
+        this.repaint();
     }
     
-     JPanel panelViajes(){
-        JPanel panelViajes = new JPanel();
+    void panelViajes(){
+
+        
+        panelViajes = new JPanel();
+        panelViajes.setBounds(250, 0, 950, 700);
         panelViajes.setLayout(null);
         panelViajes.setBackground(Colores.background);
-        return panelViajes;
+
+        JButton cerrarSesionButton = new JButton("Boton Viajes");
+        cerrarSesionButton.setBounds(250, 500, 250, 50);
+        cerrarSesionButton.setBackground(Colores.principalBotones);
+        cerrarSesionButton.setFont(Fuentes.getPrincipalFontSize(12, true));
+        cerrarSesionButton.setForeground(Colores.white);
+        panelViajes.add(cerrarSesionButton);
+
+        this.add(panelViajes);
+        try{
+            panelViajes.setVisible(true);
+            panelRutas.setVisible(false);
+            panelInicio.setVisible(false);
+        }
+        catch (Exception ex) {
+
+        }
+        
+        
+
+        this.repaint();
      }
  
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
+        if(e.getActionCommand().equals("Inicio")){
+            panelBienvenida();
+        }
+        
+        if(e.getActionCommand().equals("Rutas")){
+            panelRutas();
+        }
+        if(e.getActionCommand().equals("Viajes")){
+            panelViajes();
+        }
     }
     
 }
