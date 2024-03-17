@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import listas.ListaRutas;
@@ -40,14 +41,17 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     boolean rutasActive = false;
     boolean viajesActive = false;
     
+    JTextField idField;
+    JTextField distanciaField;
+    
     public MenuPrincipal() {
-
+        panelBienvenida();
         panelRutas();
         panelViajes();
+        this.remove(panelInicio);
         this.remove(panelRutas);
         this.remove(panelViajes);
-        panelBienvenida();
-        inicioActive = true;
+        botonSeleccionado(0);
         this.repaint();
         
         //---------------------------------Panel derecha
@@ -375,6 +379,25 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         }
      }
  
+    void botonSeleccionado(int num){
+        switch (num) {
+            case 0:
+                panelBienvenida();
+                inicioActive = true;
+            break;
+            case 1:
+                panelRutas();
+                rutasActive = true;
+            break;
+            case 2:
+                panelViajes();
+                viajesActive = true;
+            break;
+            default:
+                throw new AssertionError();
+        }
+    }
+    
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -401,14 +424,61 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             imageLabel.setBounds(15, 20, 40, 40);
             panelSuperior.add(imageLabel);
                         
-            JLabel editarLabel = new JLabel("Editar Distancia");
+            JLabel editarLabel = new JLabel("EDITAR DISTANCIA");
             editarLabel.setBounds(70,25,250,30);
             editarLabel.setForeground(Colores.white);
             editarLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
             panelSuperior.add(editarLabel);
             
+            JLabel logoTransportLabel = new JLabel(Toolbox.adjustImage("../img/ApertureWhiteTransport.png", 165, 45));
+            logoTransportLabel.setBounds(600, 17, 165, 45);
+            panelSuperior.add(logoTransportLabel);
+            
             dialogo.add(panelSuperior);
-                    
+            
+            JLabel idLabel = new JLabel("Id");
+            idLabel.setBounds(150,120,250,30);
+            idLabel.setForeground(Colores.black);
+            idLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
+            dialogo.add(idLabel);
+            
+            idField = new JTextField();
+            idField.setBounds(190,120,200,30);
+            idField.setText("");
+            dialogo.add(idField);
+            
+            JButton buscarRutaButton= new JButton("Buscar Ruta");
+            buscarRutaButton.setBounds(420,120,200,30);
+            buscarRutaButton.setBackground(Colores.principalBotones);
+            buscarRutaButton.setFont(Fuentes.getPrincipalFontSize(12, true));
+            buscarRutaButton.setForeground(Colores.white);
+            buscarRutaButton.addActionListener(this);
+            buscarRutaButton.setFocusPainted(false);
+            dialogo.add(buscarRutaButton);
+            
+            JLabel distanciaLabel = new JLabel("Distancia");
+            distanciaLabel.setBounds(250,220,250,30);
+            distanciaLabel.setForeground(Colores.black);
+            distanciaLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
+            dialogo.add(distanciaLabel);
+
+            distanciaField = new JTextField();
+            distanciaField.setBounds(350,220,200,30);
+            distanciaField.setText("");
+            distanciaField.setEnabled(false);
+            dialogo.add(distanciaField);
+            
+            JButton guardarDistanciaButton= new JButton("Guardar Distancia");
+            guardarDistanciaButton.setBounds(300,300,200,30);
+            guardarDistanciaButton.setBackground(Colores.principalBotones);
+            guardarDistanciaButton.setFont(Fuentes.getPrincipalFontSize(12, true));
+            guardarDistanciaButton.setForeground(Colores.white);
+            guardarDistanciaButton.addActionListener(this);
+            guardarDistanciaButton.setFocusPainted(false);
+            dialogo.add(guardarDistanciaButton);
+            
+            
+            
                     
             dialogo.setTitle("Editar Distancia");
             dialogo.setSize(800,400);
@@ -419,7 +489,58 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             dialogo.setVisible(true);
             
         }
+        
+        if(e.getActionCommand().equals("Buscar Ruta")){
+            boolean fallo = false;
+            int id;
+            try{
+                id = Integer.parseInt(idField.getText());
+            }catch (Exception ex) {
+                fallo = true;
+                id = 0;
+            }
+            if(!fallo){
+                Ruta rutaObtenida = ListaRutas.getRuta(id);
+                if(rutaObtenida != null){
+                    idField.setEnabled(false);
+                    distanciaField.setEnabled(true);
+                    distanciaField.setText(Integer.toString(rutaObtenida.getDistancia()));
+                }else{
+                    Alerta alerta = new Alerta("No existe la ruta ingresada", false);
+                }
+            }else{
+                Alerta alerta = new Alerta("Ingrese un id correcto", false);
+            }
+            
+        }
        
+        
+        if(e.getActionCommand().equals("Guardar Distancia")){
+            boolean fallo = false;
+            int distancia;
+            try{
+                distancia = Integer.parseInt(distanciaField.getText());
+            }catch (Exception ex) {
+                fallo = true;
+                distancia = 0;
+            }
+            if(!fallo){
+                Ruta rutaObtenida = ListaRutas.getRuta(Integer.parseInt(idField.getText()));
+                if(rutaObtenida != null){
+                    rutaObtenida.setDistancia(distancia);
+                    ListaRutas.editRuta(rutaObtenida, rutaObtenida.getId());
+                    Alerta alerta = new Alerta("Ruta Guardada Exitosamente", true);
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.botonSeleccionado(1);
+                    this.setVisible(false);
+                    this.dispose();
+                }else{
+                    Alerta alerta = new Alerta("Error al guardar la distancia", false);
+                }
+            }else{
+                Alerta alerta = new Alerta("Ingrese una distancia correcta", false);
+            }
+        }
     }
     
 }
