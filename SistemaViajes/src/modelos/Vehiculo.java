@@ -10,16 +10,40 @@ package modelos;
  */
 public class Vehiculo {
     private int id;
-    private int consumo;
+    private float consumo;
     private int capacidad;
     private String tipo;
-
-    public Vehiculo(int id, int consumo, int capacidad, String tipo) {
+    
+    private String iconoRuta;
+    private boolean enUso;
+    public Vehiculo(float consumo, int capacidad, String tipo, String iconoRuta) {
         this.id = id;
         this.consumo = consumo;
         this.capacidad = capacidad;
         this.tipo = tipo;
+        this.iconoRuta = iconoRuta;
+        this.enUso = false;
     }
+
+    public boolean isEnUso() {
+        return enUso;
+    }
+
+    public void setEnUso(boolean enUso) {
+        this.enUso = enUso;
+    }
+
+
+    
+
+    public String getIconoRuta() {
+        return iconoRuta;
+    }
+
+    public void setIconoRuta(String iconoRuta) {
+        this.iconoRuta = iconoRuta;
+    }
+    
 
     public int getId() {
         return id;
@@ -29,7 +53,7 @@ public class Vehiculo {
         this.id = id;
     }
 
-    public int getConsumo() {
+    public float getConsumo() {
         return consumo;
     }
 

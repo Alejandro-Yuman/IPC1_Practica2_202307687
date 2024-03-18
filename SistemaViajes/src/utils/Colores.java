@@ -13,6 +13,7 @@ import java.awt.Color;
 public class Colores {
     public static Color white = new Color(255, 255, 255);
     public static Color black = new Color(0, 0, 0);
+    public static Color red = new Color(123, 36, 28);
     
     public static Color principalBotones = new Color(70, 82, 105);
     public static Color principalBotonesSecundario = new Color(112, 126, 152);

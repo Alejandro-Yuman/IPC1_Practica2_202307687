@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -28,10 +29,15 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import listas.ListaRutas;
+import listas.ListaVehiculos;
+import listas.ListaViajesActivos;
 import modelos.Ruta;
+import modelos.Vehiculo;
+import modelos.Viaje;
 import utils.Colores;
 import utils.Fuentes;
 import utils.Toolbox;
@@ -429,7 +435,75 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             iniciarViajeButton.addActionListener(this);
             iniciarViajeButton.setFocusPainted(false);
             panelViajes.add(iniciarViajeButton);
-            //-------------------------Inicio Contendido
+
+            
+            //----------------------------------Inicio Tabla Viajes
+            JPanel principal = new JPanel();
+            principal.setLayout(new GridBagLayout());
+            principal.setBackground(Colores.background);
+
+            ArrayList<Viaje> viajes = ListaViajesActivos.getViajesActivo();
+
+            for (int i = 0; i < viajes.size(); i++) {
+                JPanel smallPanel = new JPanel();
+                smallPanel.setBackground(Colores.backgroundSecundario);
+                smallPanel.setBorder(BorderFactory.createLineBorder(Colores.principalBotones));
+                smallPanel.setBounds(10, 10, 400, 200);
+                smallPanel.setLayout(null);
+
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.gridx = 0;
+                //gbc.gridy = principal.getComponentCount(); 
+                gbc.fill = GridBagConstraints.HORIZONTAL;
+                //gbc.anchor = GridBagConstraints.PAGE_START;
+                gbc.ipady = 200;//Tamaño en y
+                gbc.insets = new Insets(2, 0, 2, 0);
+                gbc.weightx = 1.0;
+                
+                
+
+                JLabel codigoProdLabel = new JLabel(Integer.toString(viajes.get(i).getId()));
+                codigoProdLabel.setBounds(20, 50, 200, 30);
+                codigoProdLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(codigoProdLabel);
+
+                JLabel nombreProdLabel = new JLabel(viajes.get(i).getPuntoInicio());
+                nombreProdLabel.setBounds(100, 50, 270, 30);
+                nombreProdLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(nombreProdLabel);
+
+                JLabel cantidadProdLabel = new JLabel(viajes.get(i).getPuntoFinal());
+                cantidadProdLabel.setBounds(410, 50, 200, 30);
+                cantidadProdLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(cantidadProdLabel);
+
+                JLabel descripcionProdLabel = new JLabel(Integer.toString( viajes.get(i).getDistancia()));
+                descripcionProdLabel.setBounds(750, 50, 360, 30);
+                descripcionProdLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(descripcionProdLabel);
+                
+                
+                
+                principal.add(smallPanel, gbc);
+
+            }
+
+            JScrollPane scrollPane = new JScrollPane(principal);
+            scrollPane.getVerticalScrollBar().setBackground(Colores.background);
+            scrollPane.getHorizontalScrollBar().setBackground(Colores.background);
+            scrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+                @Override
+                protected void configureScrollBarColors() {
+                    this.thumbColor = Colores.backgroundPanel;
+                }
+            });
+            scrollPane.setBorder(null);
+            scrollPane.setBounds(20, 180, 880, 450);
+            panelViajes.add(scrollPane);
+            
+            //-------------------------Fin Tabla Viajes
+            
+            //-------------------------Fin Contendido
             
             this.add(panelViajes);
             try {
@@ -685,7 +759,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             panelSuperior.setLayout(null);
             panelSuperior.setBackground(Colores.backgroundPanel);
             
-            JLabel imageLabel = new JLabel(Toolbox.adjustImage("../img/Crear.png", 40, 40));
+            JLabel imageLabel = new JLabel(Toolbox.adjustImage("../img/CrearWhite.png", 40, 40));
             imageLabel.setBounds(15, 20, 40, 40);
             panelSuperior.add(imageLabel);
                         
@@ -719,7 +793,6 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             puntoInicialCombo = new JComboBox(listaInicial);
             puntoInicialCombo.setBounds(170, 120, 200, 30);
             puntoInicialCombo.setFont(Fuentes.getPrincipalFontSize(12, true));
-            
             puntoInicialCombo.addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent itemEvent) {
                     int state = itemEvent.getStateChange();
@@ -753,7 +826,6 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             puntoFinalLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
             dialogo.add(puntoFinalLabel);
             
-            String[] listaFinal = {"Seleccione una opción"};
             puntoFinalCombo = new JComboBox();
             puntoFinalCombo.setBounds(540, 120, 200, 30);
             puntoFinalCombo.setFont(Fuentes.getPrincipalFontSize(12, true));
@@ -766,22 +838,37 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             tipoCarroLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
             dialogo.add(tipoCarroLabel);
             
-            String[] listaCarro = {"Seleccione una opción","Hombre","Mujer"};
-            tipoCarroCombo = new JComboBox(listaCarro);
+            ArrayList<Vehiculo> arrayCarros = ListaVehiculos.getVehiculosActivos();
+            arrayPuntos.addFirst("Seleccione una opción");
+            String[] listaCarrosInicial = new String[arrayCarros.size()];
+            for (int i = 0; i < arrayCarros.size(); i++) {
+                listaCarrosInicial[i] = arrayCarros.get(i).getTipo();
+            }
+
+            tipoCarroCombo = new JComboBox(listaCarrosInicial);
             tipoCarroCombo.setBounds(170, 180, 200, 30);
             tipoCarroCombo.setFont(Fuentes.getPrincipalFontSize(12, true));
             dialogo.add(tipoCarroCombo);
             
 
 
+            
 
-            JButton guardarDistanciaButton= new JButton("Guardar Distancia");
+            JButton guardarDistanciaButton= new JButton("Guardar Viaje");
             guardarDistanciaButton.setBounds(300,300,200,30);
             guardarDistanciaButton.setBackground(Colores.principalBotones);
             guardarDistanciaButton.setFont(Fuentes.getPrincipalFontSize(12, true));
             guardarDistanciaButton.setForeground(Colores.white);
             guardarDistanciaButton.addActionListener(this);
             guardarDistanciaButton.setFocusPainted(false);
+            if (ListaViajesActivos.getTamaño() == 3) {
+                guardarDistanciaButton.setEnabled(false);
+                JLabel limiteLabel = new JLabel("Limite de Viajes Alcanzado");
+                limiteLabel.setBounds(20, 300, 250, 30);
+                limiteLabel.setForeground(Colores.red);
+                limiteLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
+                dialogo.add(limiteLabel);
+            }
             dialogo.add(guardarDistanciaButton);
             
             
@@ -796,7 +883,41 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             dialogo.setVisible(true);
         }
     
-    
+        if(e.getActionCommand().equals("Guardar Viaje")){
+            String puntoInicio = puntoInicialCombo.getSelectedItem().toString();
+            String puntoFinal = puntoFinalCombo.getSelectedItem().toString();
+            String tipoCarro = tipoCarroCombo.getSelectedItem().toString();
+            
+            if (ListaViajesActivos.getTamaño() < 3) {
+
+                Ruta rutaActual = ListaRutas.searchRuta(puntoInicio, puntoFinal);
+                if (rutaActual != null) {
+                    Vehiculo carrito = ListaVehiculos.getVehiculoByTipo(tipoCarro);
+                    if (carrito != null) {
+                        if (!carrito.isEnUso()) {
+                            ListaViajesActivos.addViajeActivo(new Viaje(rutaActual.getPuntoInicio(), rutaActual.getPuntoFinal(), carrito, rutaActual.getDistancia(), LocalDateTime.now()));
+                            ListaVehiculos.setActivoByTipo(tipoCarro, true);
+
+                            Alerta alerta = new Alerta("El viaje fue guardado con exito", true);
+                            MenuPrincipal menu = new MenuPrincipal();
+                            menu.botonSeleccionado(2);
+                            this.setVisible(false);
+                            this.dispose();
+                        } else {
+                            Alerta alerta = new Alerta("El vehiculo esta en uso", false);
+                        }
+                    } else {
+                        Alerta alerta = new Alerta("El vehiculo no existe", false);
+                    }
+
+                } else {
+                    Alerta alerta = new Alerta("Ingrese una ruta correcta", false);
+                }
+            }else{
+                Alerta alerta = new Alerta("Limite de Viajes alcanzado", false);
+            }
+
+        }
     }
     
 }

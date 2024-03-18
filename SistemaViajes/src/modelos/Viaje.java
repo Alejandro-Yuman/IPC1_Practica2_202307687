@@ -20,8 +20,9 @@ public class Viaje {
     private LocalDateTime  fechaInicio;
     private LocalDateTime  fechaFinal;
     private boolean activo;
-    public Viaje(int id, String puntoInicio, String puntoFinal, Vehiculo vehiculo, int distancia, LocalDateTime fechaInicio) {
-        this.id = id;
+    
+    
+    public Viaje( String puntoInicio, String puntoFinal, Vehiculo vehiculo, int distancia, LocalDateTime fechaInicio) {
         this.puntoInicio = puntoInicio;
         this.puntoFinal = puntoFinal;
         this.vehiculo = vehiculo;

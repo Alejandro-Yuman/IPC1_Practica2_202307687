@@ -23,6 +23,10 @@ public class Toolbox {
         return  new ImageIcon(imageDimension);
     }
     
+    public static ImageIcon ImageIconSinDimensiones(String url){
+        return new ImageIcon(Toolbox.class.getResource(url));
+    }
+    
     public static void lecturaCSV(File archivoCSV){
         try{
             Scanner lector = new Scanner(archivoCSV);

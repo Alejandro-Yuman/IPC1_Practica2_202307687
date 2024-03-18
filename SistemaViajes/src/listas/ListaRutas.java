@@ -74,6 +74,23 @@ public class ListaRutas {
         return rutasPuntos;
     }
     
+    public static Ruta searchRuta(String puntoI, String puntoF){
+        for (int i = 0; i < rutas.size(); i++) {
+            if (rutas.get(i).getPuntoInicio().equals(puntoI)) {
+                if(rutas.get(i).getPuntoFinal().equals(puntoF)){
+                    return rutas.get(i);
+                }
+            }else{
+                if(rutas.get(i).getPuntoInicio().equals(puntoF)){
+                    if(rutas.get(i).getPuntoFinal().equals(puntoI)){
+                        return new Ruta(rutas.get(i).getPuntoFinal(), rutas.get(i).getPuntoInicio(),rutas.get(i).getDistancia());
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    
     
     public static Ruta getRuta(int id){
         
