@@ -9,10 +9,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,6 +23,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import listas.ListaRutas;
 import modelos.Ruta;
@@ -412,6 +415,23 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         }
         if(e.getActionCommand().equals("Viajes")){
             panelViajes();
+        }
+        
+        if(e.getActionCommand().equals("Cargar Rutas (.csv)")){
+            JFileChooser fileChooser = new JFileChooser();
+            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos CSV", "csv");
+            fileChooser.setFileFilter(filtro);
+            int seleccion =  fileChooser.showOpenDialog(this);
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                File archivo = fileChooser.getSelectedFile();
+                Toolbox.lecturaCSV(archivo);
+                MenuPrincipal menu = new MenuPrincipal();
+                menu.botonSeleccionado(1);
+                this.setVisible(false);
+                this.dispose();
+            }else{
+                
+            }
         }
         
         if(e.getActionCommand().equals("Editar Distancia")){

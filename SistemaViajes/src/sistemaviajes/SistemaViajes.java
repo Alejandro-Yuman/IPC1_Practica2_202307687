@@ -27,12 +27,12 @@ public class SistemaViajes {
         System.out.println(hora2.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
         
 
-        ListaRutas.addRuta(new Ruta("Guatemala","Jutiapa",105));
+        /*ListaRutas.addRuta(new Ruta("Guatemala","Jutiapa",105));
         ListaRutas.addRuta(new Ruta("Guatemala","Palin",130));
         ListaRutas.addRuta(new Ruta("Guatemala","Escuintla",145));
         ListaRutas.addRuta(new Ruta("Peten","Guatemala",210));
         ListaRutas.addRuta(new Ruta("Zona 18","Usac",30));
-        ListaRutas.addRuta(new Ruta("Guatemala","El Salvador",160));
+        ListaRutas.addRuta(new Ruta("Guatemala","El Salvador",160));*/
         
         
         MenuPrincipal menu = new MenuPrincipal();
