@@ -29,7 +29,7 @@ public class Alerta extends JFrame implements ActionListener{
             imageLabel.setBounds(10, 15, 30, 30);
             dialogo.add(imageLabel);
         }else{
-            JLabel imageLabel = new JLabel(Toolbox.adjustImage("../img/CorrectoIcon.png", 30, 30));
+            JLabel imageLabel = new JLabel(Toolbox.adjustImage("../img/CorrectoIconNuevo.png", 30, 30));
             imageLabel.setBounds(10, 15, 30, 30);
             dialogo.add(imageLabel);
         }

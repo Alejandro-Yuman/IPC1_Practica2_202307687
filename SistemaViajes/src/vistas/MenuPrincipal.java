@@ -7,12 +7,17 @@ package vistas;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.ItemSelectable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -40,20 +45,27 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     JPanel panelInicio;
     JPanel panelRutas;
     JPanel panelViajes;
+    JPanel panelHistorial;
     boolean inicioActive = false;
     boolean rutasActive = false;
     boolean viajesActive = false;
+    boolean historialActive = false;
     
     JTextField idField;
     JTextField distanciaField;
+    JComboBox puntoInicialCombo;
+    JComboBox puntoFinalCombo;
+    JComboBox tipoCarroCombo;
     
     public MenuPrincipal() {
         panelBienvenida();
         panelRutas();
         panelViajes();
+        panelHistorial();
         this.remove(panelInicio);
         this.remove(panelRutas);
         this.remove(panelViajes);
+        this.remove(panelHistorial);
         botonSeleccionado(0);
         this.repaint();
         
@@ -64,7 +76,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         panelPrincipalderecha.setBackground(Colores.backgroundPanel);
         
         
-        JLabel logoLabel = new JLabel(Toolbox.adjustImage("../img/ApertureWhiteTransport.png", 165, 45));
+        JLabel logoLabel = new JLabel(Toolbox.adjustImage("../img/ApertureWhite.png", 165, 45));
         logoLabel.setBounds(35, 20, 165, 45);
         panelPrincipalderecha.add(logoLabel);
 
@@ -122,6 +134,19 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         viajesButton.addActionListener(this);
         panelBotones.add(viajesButton);
         
+        JButton historialButton = new JButton("Historial");
+        historialButton.setBounds(0,150,250,50);
+        historialButton.setBackground(Colores.principalBotonesSecundario);
+        historialButton.setBorder(null);
+        historialButton.setFont(Fuentes.getPrincipalFontSize(12, true));
+        historialButton.setForeground(Colores.white);
+        historialButton.setHorizontalAlignment(SwingConstants.LEFT);
+        historialButton.setIcon(Toolbox.adjustImage("../img/Historial.png", 30, 30));
+        historialButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        historialButton.setFocusPainted(false);
+        historialButton.addActionListener(this);
+        panelBotones.add(historialButton);
+        
         //-------------------------------------Fin Botones
         
         panelPrincipalderecha.add(panelBotones);
@@ -142,6 +167,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         if (!inicioActive) {
             inicioActive = true;
             rutasActive = false;
+            historialActive = false;
             viajesActive = false;
 
             panelInicio = new JPanel();
@@ -165,22 +191,33 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             separador.setBackground(Colores.backgroundPanel);
             separador.setForeground(Colores.backgroundPanel);
             panelInicio.add(separador);
-
-            JLabel logoTransportLabel = new JLabel(Toolbox.adjustImage("../img/ApertureBlackTransport.png", 165, 45));
-            logoTransportLabel.setBounds(60, 250, 165, 45);
-            panelInicio.add(logoTransportLabel);
+            
+            
+            JPanel panelInfo = new JPanel();
+            panelInfo.setBounds(100, 120, 700, 500);
+            panelInfo.setLayout(null);
+            panelInfo.setBackground(Colores.backgroundPanel);
+            
+            JLabel fondoLabel = new JLabel(Toolbox.adjustImage("../img/background.png", 640, 360));
+            fondoLabel.setBounds(30, 20, 640, 360);
+            panelInfo.add(fondoLabel);
+            
+                    
+            JLabel logoTransportLabel = new JLabel(Toolbox.adjustImage("../img/ApertureWhite.png", 165, 45));
+            logoTransportLabel.setBounds(20, 420, 165, 45);
+            panelInfo.add(logoTransportLabel);
 
             JLabel mediaFraseLabel = new JLabel("<html>LA SOLUCIÓN AL TRANSPORTE DE PRIMERA CLASE, GRACIAS A</html>");
-            mediaFraseLabel.setBounds(20,270,300,200);
-            mediaFraseLabel.setForeground(Colores.black);
+            mediaFraseLabel.setBounds(200,410,300,60);
+            mediaFraseLabel.setForeground(Colores.white);
             mediaFraseLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
-            panelInicio.add(mediaFraseLabel);
+            panelInfo.add(mediaFraseLabel);
             
-            JLabel logoApertureLabel = new JLabel(Toolbox.adjustImage("../img/LogoCompleto.png", 165, 45));
-            logoApertureLabel.setBounds(60, 440, 165, 45);
-            panelInicio.add(logoApertureLabel);
+            JLabel logoApertureLabel = new JLabel(Toolbox.adjustImage("../img/LogoCompletoWhite.png", 165, 45));
+            logoApertureLabel.setBounds(500, 420, 165, 45);
+            panelInfo.add(logoApertureLabel);
             
-            
+            panelInicio.add(panelInfo);
             
             
             //------------------------- Fin Contendido
@@ -189,6 +226,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             try {
                 this.remove(panelViajes);
                 this.remove(panelRutas);
+                this.remove(panelHistorial);
                 revalidate();
 
             } catch (Exception ex) {
@@ -204,6 +242,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
 
             inicioActive = false;
             rutasActive = true;
+            historialActive = false;
             viajesActive = false;
             
             panelRutas = new JPanel();
@@ -336,6 +375,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             try {
                 this.remove(panelViajes);
                 this.remove(panelInicio);
+                this.remove(panelHistorial);
                 revalidate();
             } catch (Exception ex) {
 
@@ -350,6 +390,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         if(!viajesActive) {
             inicioActive = false;
             rutasActive = false;
+            historialActive = false;
             viajesActive = true;
             
             panelViajes = new JPanel();
@@ -360,11 +401,34 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             //-------------------------Inicio Contendido
             
             JLabel tituloLabel = new JLabel("VIAJES");
-            tituloLabel.setBounds(20,20,400,30);
+            tituloLabel.setBounds(20,30,400,30);
             tituloLabel.setForeground(Colores.tituloLetra);
             tituloLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
             panelViajes.add(tituloLabel);
 
+            JSeparator separador = new JSeparator();
+            separador.setBounds(0, 90, 950, 10);
+            separador.setBackground(Colores.backgroundPanel);
+            separador.setForeground(Colores.backgroundPanel);
+            panelViajes.add(separador);
+            
+            JButton crearViajeButton= new JButton("Crear Viaje");
+            crearViajeButton.setBounds(20,120,200,40);
+            crearViajeButton.setBackground(Colores.principalBotones);
+            crearViajeButton.setFont(Fuentes.getPrincipalFontSize(12, true));
+            crearViajeButton.setForeground(Colores.white);
+            crearViajeButton.addActionListener(this);
+            crearViajeButton.setFocusPainted(false);
+            panelViajes.add(crearViajeButton);
+            
+            JButton iniciarViajeButton= new JButton("Iniciar Viajes");
+            iniciarViajeButton.setBounds(700,120,200,40);
+            iniciarViajeButton.setBackground(Colores.principalBotones);
+            iniciarViajeButton.setFont(Fuentes.getPrincipalFontSize(12, true));
+            iniciarViajeButton.setForeground(Colores.white);
+            iniciarViajeButton.addActionListener(this);
+            iniciarViajeButton.setFocusPainted(false);
+            panelViajes.add(iniciarViajeButton);
             //-------------------------Inicio Contendido
             
             this.add(panelViajes);
@@ -372,6 +436,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
 
                 this.remove(panelRutas);
                 this.remove(panelInicio);
+                this.remove(panelHistorial);
                 revalidate();
 
             } catch (Exception ex) {
@@ -381,6 +446,49 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             this.repaint();
         }
      }
+    
+    void panelHistorial(){
+        if (!historialActive) {
+            inicioActive = false;
+            rutasActive = false;
+            viajesActive = false;
+            historialActive = true;
+        
+            panelHistorial = new JPanel();
+            panelHistorial.setBounds(250, 0, 950, 700);
+            panelHistorial.setLayout(null);
+            panelHistorial.setBackground(Colores.background);
+
+            //-------------------------Inicio Contendido
+            JLabel tituloLabel = new JLabel("HISTORIAL");
+            tituloLabel.setBounds(20, 30, 400, 30);
+            tituloLabel.setForeground(Colores.tituloLetra);
+            tituloLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
+            panelHistorial.add(tituloLabel);
+
+            JSeparator separador = new JSeparator();
+            separador.setBounds(0, 90, 950, 10);
+            separador.setBackground(Colores.backgroundPanel);
+            separador.setForeground(Colores.backgroundPanel);
+            panelHistorial.add(separador);
+            //-------------------------Inicio Contendido
+
+            this.add(panelHistorial);
+            try {
+
+                this.remove(panelRutas);
+                this.remove(panelInicio);
+                this.remove(panelViajes);
+                revalidate();
+
+            } catch (Exception ex) {
+
+            }
+
+            this.repaint();
+        }
+        
+    }
  
     void botonSeleccionado(int num){
         switch (num) {
@@ -395,6 +503,10 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             case 2:
                 panelViajes();
                 viajesActive = true;
+            break;
+            case 3:
+                panelHistorial();
+                historialActive = true;
             break;
             default:
                 throw new AssertionError();
@@ -415,6 +527,10 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         }
         if(e.getActionCommand().equals("Viajes")){
             panelViajes();
+        }
+        
+        if(e.getActionCommand().equals("Historial")){
+            panelHistorial();
         }
         
         if(e.getActionCommand().equals("Cargar Rutas (.csv)")){
@@ -450,7 +566,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             editarLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
             panelSuperior.add(editarLabel);
             
-            JLabel logoTransportLabel = new JLabel(Toolbox.adjustImage("../img/ApertureWhiteTransport.png", 165, 45));
+            JLabel logoTransportLabel = new JLabel(Toolbox.adjustImage("../img/ApertureWhite.png", 165, 45));
             logoTransportLabel.setBounds(600, 17, 165, 45);
             panelSuperior.add(logoTransportLabel);
             
@@ -561,6 +677,126 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                 Alerta alerta = new Alerta("Ingrese una distancia correcta", false);
             }
         }
+    
+        if(e.getActionCommand().equals("Crear Viaje")){
+            
+            JPanel panelSuperior = new JPanel();
+            panelSuperior.setBounds(0, 0, 800, 80);
+            panelSuperior.setLayout(null);
+            panelSuperior.setBackground(Colores.backgroundPanel);
+            
+            JLabel imageLabel = new JLabel(Toolbox.adjustImage("../img/Crear.png", 40, 40));
+            imageLabel.setBounds(15, 20, 40, 40);
+            panelSuperior.add(imageLabel);
+                        
+            JLabel editarLabel = new JLabel("CREAR VIAJE");
+            editarLabel.setBounds(70,25,250,30);
+            editarLabel.setForeground(Colores.white);
+            editarLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
+            panelSuperior.add(editarLabel);
+            
+            JLabel logoTransportLabel = new JLabel(Toolbox.adjustImage("../img/ApertureWhite.png", 165, 45));
+            logoTransportLabel.setBounds(600, 17, 165, 45);
+            panelSuperior.add(logoTransportLabel);
+            
+            dialogo.add(panelSuperior);
+            
+
+            JLabel puntoInicialLabel = new JLabel("Punto de Inicio");
+            puntoInicialLabel.setBounds(20,120,250,30);
+            puntoInicialLabel.setForeground(Colores.black);
+            puntoInicialLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
+            dialogo.add(puntoInicialLabel);
+            
+            
+            ArrayList<String> arrayPuntos = ListaRutas.getPuntos();
+            arrayPuntos.addFirst("Seleccione una opción");
+            String[] listaInicial = new String[arrayPuntos.size()];
+            for (int i = 0; i < arrayPuntos.size(); i++) {
+                listaInicial[i] = arrayPuntos.get(i);
+            }
+            
+            puntoInicialCombo = new JComboBox(listaInicial);
+            puntoInicialCombo.setBounds(170, 120, 200, 30);
+            puntoInicialCombo.setFont(Fuentes.getPrincipalFontSize(12, true));
+            
+            puntoInicialCombo.addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent itemEvent) {
+                    int state = itemEvent.getStateChange();
+                    if(state == ItemEvent.SELECTED){
+                        ArrayList<String> arrayPuntosRelacionados = ListaRutas.getPuntosRelacionados( itemEvent.getItem().toString());
+                        arrayPuntosRelacionados.addFirst("Seleccione una opción");
+                        String[] listaPuntosRelacionados = new String[arrayPuntosRelacionados.size()];
+                        for (int i = 0; i < arrayPuntosRelacionados.size(); i++) {
+                            listaPuntosRelacionados[i] = arrayPuntosRelacionados.get(i);
+                        }
+                        puntoFinalCombo.setEnabled(true);
+                        puntoFinalCombo.setModel(new DefaultComboBoxModel<>( listaPuntosRelacionados ));
+                    }    
+                    /*System.out.println((state == ItemEvent.SELECTED) ? "Selected" : "Deselected");
+                    System.out.println("Item: " + itemEvent.getItem());*/
+
+                    //System.out.println(", Selected: " + selectedString(is));
+                }
+            }
+            );
+            
+            dialogo.add(puntoInicialCombo);
+            
+            
+            
+            
+            
+            JLabel puntoFinalLabel = new JLabel("Punto Final");
+            puntoFinalLabel.setBounds(430,120,250,30);
+            puntoFinalLabel.setForeground(Colores.black);
+            puntoFinalLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
+            dialogo.add(puntoFinalLabel);
+            
+            String[] listaFinal = {"Seleccione una opción"};
+            puntoFinalCombo = new JComboBox();
+            puntoFinalCombo.setBounds(540, 120, 200, 30);
+            puntoFinalCombo.setFont(Fuentes.getPrincipalFontSize(12, true));
+            puntoFinalCombo.setEnabled(false);
+            dialogo.add(puntoFinalCombo);
+
+            JLabel tipoCarroLabel = new JLabel("Tipo Carro");
+            tipoCarroLabel.setBounds(20,180,250,30);
+            tipoCarroLabel.setForeground(Colores.black);
+            tipoCarroLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
+            dialogo.add(tipoCarroLabel);
+            
+            String[] listaCarro = {"Seleccione una opción","Hombre","Mujer"};
+            tipoCarroCombo = new JComboBox(listaCarro);
+            tipoCarroCombo.setBounds(170, 180, 200, 30);
+            tipoCarroCombo.setFont(Fuentes.getPrincipalFontSize(12, true));
+            dialogo.add(tipoCarroCombo);
+            
+
+
+
+            JButton guardarDistanciaButton= new JButton("Guardar Distancia");
+            guardarDistanciaButton.setBounds(300,300,200,30);
+            guardarDistanciaButton.setBackground(Colores.principalBotones);
+            guardarDistanciaButton.setFont(Fuentes.getPrincipalFontSize(12, true));
+            guardarDistanciaButton.setForeground(Colores.white);
+            guardarDistanciaButton.addActionListener(this);
+            guardarDistanciaButton.setFocusPainted(false);
+            dialogo.add(guardarDistanciaButton);
+            
+            
+            
+            
+            dialogo.setTitle("Crear Viaje");
+            dialogo.setSize(800,400);
+            dialogo.setLayout(null);
+            dialogo.setResizable(false);
+            dialogo.setLocationRelativeTo(null);
+            dialogo.getContentPane().setBackground(Colores.background);
+            dialogo.setVisible(true);
+        }
+    
+    
     }
     
 }
