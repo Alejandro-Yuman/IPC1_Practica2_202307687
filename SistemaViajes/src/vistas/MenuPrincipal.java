@@ -551,9 +551,20 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         panel_Vehiculo_1.setBackground(null);
                         panel_Vehiculo_1.setLayout(null);
                         
+                        JButton gasolina_1Button = new JButton();
+                        gasolina_1Button.setBounds(0, 0, 50, 40);
+                        gasolina_1Button.setBackground(Colores.principalBotones);
+                        gasolina_1Button.setFont(Fuentes.getPrincipalFontSize(12, true));
+                        gasolina_1Button.setForeground(Colores.white);
+                        gasolina_1Button.addActionListener(this);
+                        gasolina_1Button.setIcon(Toolbox.adjustImage("../img/Gasolina.png", 30, 30));
+                        gasolina_1Button.setFocusPainted(false);
+                        panel_Vehiculo_1.add(gasolina_1Button);
+                        
+                        
 
                         JLabel infoLabel = new JLabel("<html>" + "Recorrido: " + recorrido_1 +"<br>"+"Gasolina Actual: "+gasolina_1+ "</html>");
-                        infoLabel.setBounds(0, 0, 200, 190);
+                        infoLabel.setBounds(60, 0, 200, 190);
                         infoLabel.setVerticalAlignment(JLabel.TOP);
                         infoLabel.setVerticalTextPosition(JLabel.TOP);
                         infoLabel.setAlignmentY(TOP_ALIGNMENT);

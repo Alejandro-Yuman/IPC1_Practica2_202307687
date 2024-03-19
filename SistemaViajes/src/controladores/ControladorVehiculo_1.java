@@ -15,12 +15,15 @@ import vistas.MenuPrincipal;
 public class ControladorVehiculo_1 extends Thread{
     MenuPrincipal menu;
     int posx_moto, posy_moto;
+    int posx_panel, posy_panel;
     private volatile boolean running = true;
 
     public ControladorVehiculo_1(MenuPrincipal menu) {
         this.menu = menu;
         this.posx_moto = this.menu.vehiculoLabel_1.getX();
         this.posy_moto = this.menu.vehiculoLabel_1.getY();
+        this.posx_panel = this.menu.panel_Vehiculo_1.getX();
+        this.posy_panel = this.menu.panel_Vehiculo_1.getY();
                         
     }
 
@@ -32,6 +35,8 @@ public class ControladorVehiculo_1 extends Thread{
                 Thread.sleep(2000);
                 posx_moto += 10;
                 this.menu.vehiculoLabel_1.setLocation(posx_moto, posy_moto);
+                posx_panel += 10;
+                this.menu.panel_Vehiculo_1.setLocation(posx_panel, posy_panel);
                 
             } catch (InterruptedException ex) {
                 Logger.getLogger(ControladorMoto.class.getName()).log(Level.SEVERE, null, ex);
