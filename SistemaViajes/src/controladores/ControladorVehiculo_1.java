@@ -25,7 +25,7 @@ public class ControladorVehiculo_1 extends Thread{
     boolean moverIzquierda = false;
     
     float capacidadMax;
-    float tanque;
+    float tanqueGastado;
     float gasto;
     public ControladorVehiculo_1(MenuPrincipal menu) {
 
@@ -41,9 +41,10 @@ public class ControladorVehiculo_1 extends Thread{
         //Obtener datos de la gasolina
         capacidadMax = this.menu.viaje_1.getVehiculo().getCapacidad();
         gasto = this.menu.viaje_1.getVehiculo().getConsumo();
-        tanque = capacidadMax+gasto;
+        tanqueGastado = capacidadMax+gasto;
         
-        this.menu.infoLabel_1.setText("<html>" + "Recorrido: " + "0" + "<br>" + "Gasolina Actual: " + tanque + "</html>");
+        System.out.println(gasto);
+        this.menu.infoLabel_1.setText("<html>" + "Recorrido: " + "0" + "<br>" + "Gasolina: " + tanqueGastado + "</html>");
         //velocidad =100- this.menu.viaje_1.getDistancia() ;
         
         
@@ -56,8 +57,6 @@ public class ControladorVehiculo_1 extends Thread{
         //Calculo del cambio de distancia
         cambioDistancia =(double)this.menu.viaje_1.getDistancia()/(double)555;
         
-        System.out.println(velocidad);
-        System.out.println(cambioDistancia);
         
         moverDerecha = true;
         
@@ -68,7 +67,7 @@ public class ControladorVehiculo_1 extends Thread{
         while (running) {
             try {
                 // El hilo se duerme por 1 segundo
-                Thread.sleep(2000);
+                Thread.sleep(100);
                 if (moverDerecha) {
                     moverDerecha();
                 }else if(moverIzquierda){
@@ -99,17 +98,21 @@ public class ControladorVehiculo_1 extends Thread{
         int recorridoAcutal = (int) Math.round((this.menu.vehiculoLabel_1.getX() - 130) * cambioDistancia * 100) / 100;
         this.menu.recorrido_1 = recorridoAcutal;
         
-        tanque -= gasto;
-        this.menu.infoLabel_1.setText("<html>" + "Recorrido: " + String.valueOf(this.menu.recorrido_1) + "<br>" + "Gasolina Actual: " +  (float)Math.round(tanque * 100) / 100 + "</html>");
+        tanqueGastado = gasto*recorridoAcutal;
 
-        System.out.println("Carro :" + this.menu.panel_Vehiculo_1.getBounds() + "Rec: " + this.menu.moto_rect1);
-        System.out.println("Meta :" + this.menu.metaFinal);
-        System.out.println(" ");
+        
+        this.menu.infoLabel_1.setText("<html>" + "Recorrido: " + String.valueOf(this.menu.recorrido_1) + "<br>" + "Gasolina: " +  (float) Math.round((capacidadMax - tanqueGastado) * 100) / 100 + "</html>");
+
 
         //Si llega al final
         if (this.menu.moto_rect1.intersects(this.menu.metaFinal)) {
             moverDerecha = false;
         }
+        if (tanqueGastado >= capacidadMax) {
+            moverDerecha = false;
+        }
     }
     
+    
+  
 }
