@@ -85,9 +85,9 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     public Viaje viaje_2;
     public Viaje viaje_3;
     
-    public double recorrido_1 =0;
-    public double recorrido_2 =0;
-    public double recorrido_3 =0;
+    public int recorrido_1 =0;
+    public int recorrido_2 =0;
+    public int recorrido_3 =0;
     
     public int gasolina_1 =0;
     public int gasolina_2 =0;
