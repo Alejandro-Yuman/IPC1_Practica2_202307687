@@ -4,10 +4,13 @@
  */
 package vistas;
 
+import controladores.ControladorMoto;
+import controladores.ControladorVehiculo_1;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.ItemSelectable;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -31,6 +34,7 @@ import javax.swing.JTextField;
 import javax.swing.LookAndFeel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicScrollBarUI;
@@ -65,6 +69,30 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     JComboBox puntoFinalCombo;
     JComboBox tipoCarroCombo;
     
+    public JPanel panel_Vehiculo_1;
+    public JPanel panel_Vehiculo_2;
+    public JPanel panel_Vehiculo_3;
+    
+    public JLabel vehiculoLabel_1;
+    public JLabel vehiculoLabel_2;
+    public JLabel vehiculoLabel_3;
+    
+    public Rectangle moto_rect1;
+    public Rectangle moto_rect2;
+    public Rectangle moto_rect3;
+    
+    public int recorrido_1 =0;
+    public int recorrido_2 =0;
+    public int recorrido_3 =0;
+    
+    public int gasolina_1 =0;
+    public int gasolina_2 =0;
+    public int gasolina_3 =0;
+    
+    
+    public Rectangle metaFinal;
+    public Rectangle metaInicial;
+        
     public MenuPrincipal() {
         panelBienvenida();
         panelRutas();
@@ -485,7 +513,27 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                 iniciarViajeSingularButton.setBackground(Colores.principalBotones);
                 iniciarViajeSingularButton.setFont(Fuentes.getPrincipalFontSize(12, true));
                 iniciarViajeSingularButton.setForeground(Colores.white);
-                iniciarViajeSingularButton.addActionListener(this);
+                int i_here = i;
+                iniciarViajeSingularButton.addActionListener(new ActionListener() { 
+                    public void actionPerformed(ActionEvent e) {
+                        int i_here_2 = i_here;
+                        switch (i_here_2) {
+                            case 0:
+                                ControladorVehiculo_1 controlador1 = new ControladorVehiculo_1(MenuPrincipal.this);
+                                controlador1.start();
+                                break;
+                            case 1:
+                                
+                                break;
+                            case 2:
+                                
+                                break;
+                            default:
+                                throw new AssertionError();
+                        }
+                        
+                    }
+                });
                 iniciarViajeSingularButton.setFocusPainted(false);
                 smallPanel.add(iniciarViajeSingularButton);
 
@@ -495,15 +543,70 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                 separadorCamino.setForeground(Colores.backgroundPanel);
                 smallPanel.add(separadorCamino);
                 
-                JLabel vehiculoLabel = new JLabel(Toolbox.adjustImage(viajes.get(i).getVehiculo().getIconoRuta(), 115, 66));
-                vehiculoLabel.setBounds(130, 120, 115, 66);
-                smallPanel.add(vehiculoLabel);
-                
-                /*JLabel distanciaLabel = new JLabel("Distancia: "+viajes.get(i).getDistancia());
-                distanciaLabel.setBounds(20, 00, 200, 30);
-                distanciaLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
-                smallPanel.add(distanciaLabel);*/
+                Border borde = BorderFactory.createLineBorder(Colores.red, 2);
+                switch (i) {
+                    case 0:
+                        panel_Vehiculo_1 = new JPanel();
+                        panel_Vehiculo_1.setBounds(130, 70, 400, 50);
+                        panel_Vehiculo_1.setBackground(null);
+                        panel_Vehiculo_1.setLayout(null);
+                        
 
+                        JLabel infoLabel = new JLabel("<html>" + "Recorrido: " + recorrido_1 +"<br>"+"Gasolina Actual: "+gasolina_1+ "</html>");
+                        infoLabel.setBounds(0, 0, 200, 190);
+                        infoLabel.setVerticalAlignment(JLabel.TOP);
+                        infoLabel.setVerticalTextPosition(JLabel.TOP);
+                        infoLabel.setAlignmentY(TOP_ALIGNMENT);
+                        infoLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                        panel_Vehiculo_1.add(infoLabel);
+                        
+                        smallPanel.add(panel_Vehiculo_1);
+                        
+                        vehiculoLabel_1 = new JLabel(Toolbox.adjustImage(viajes.get(i).getVehiculo().getIconoRuta(), 115, 66));
+                        vehiculoLabel_1.setBounds(130, 120, 115, 66);
+                        vehiculoLabel_1.setBorder(borde);
+                        smallPanel.add(vehiculoLabel_1);
+                        
+                        moto_rect1 = vehiculoLabel_1.getBounds();
+                        
+                        
+                        break;
+                    case 1:
+                        vehiculoLabel_2 = new JLabel(Toolbox.adjustImage(viajes.get(i).getVehiculo().getIconoRuta(), 115, 66));
+                        vehiculoLabel_2.setBounds(130, 120, 115, 66);
+                        vehiculoLabel_2.setBorder(borde);
+                        smallPanel.add(vehiculoLabel_2);
+                        
+                        moto_rect2 = vehiculoLabel_2.getBounds();
+                        
+                        break;
+                    case 2:
+                        vehiculoLabel_3 = new JLabel(Toolbox.adjustImage(viajes.get(i).getVehiculo().getIconoRuta(), 115, 66));
+                        vehiculoLabel_3.setBounds(130, 120, 115, 66);
+                        vehiculoLabel_3.setBorder(borde);
+                        smallPanel.add(vehiculoLabel_3);
+                        
+                        moto_rect3 = vehiculoLabel_3.getBounds();
+
+                        
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+
+                
+
+
+                
+                JLabel inicioLabel = new JLabel();
+                inicioLabel.setBounds(130, 150, 30, 30);
+                //inicioLabel.setBorder(borde);
+                metaInicial = inicioLabel.getBounds();
+                
+                JLabel finalLabel = new JLabel();
+                finalLabel.setBounds(800, 150, 30, 30);
+                //finalLabel.setBorder(borde);
+                metaFinal = finalLabel.getBounds();
                 
                 
                 
