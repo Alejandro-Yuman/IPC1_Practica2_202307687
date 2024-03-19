@@ -81,14 +81,19 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     public Rectangle moto_rect2;
     public Rectangle moto_rect3;
     
-    public int recorrido_1 =0;
-    public int recorrido_2 =0;
-    public int recorrido_3 =0;
+    public Viaje viaje_1;
+    public Viaje viaje_2;
+    public Viaje viaje_3;
+    
+    public double recorrido_1 =0;
+    public double recorrido_2 =0;
+    public double recorrido_3 =0;
     
     public int gasolina_1 =0;
     public int gasolina_2 =0;
     public int gasolina_3 =0;
     
+    public JLabel infoLabel_1;
     
     public Rectangle metaFinal;
     public Rectangle metaInicial;
@@ -546,6 +551,8 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                 Border borde = BorderFactory.createLineBorder(Colores.red, 2);
                 switch (i) {
                     case 0:
+                        viaje_1 = viajes.get(i_here);
+                        
                         panel_Vehiculo_1 = new JPanel();
                         panel_Vehiculo_1.setBounds(130, 70, 400, 50);
                         panel_Vehiculo_1.setBackground(null);
@@ -563,13 +570,13 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         
                         
 
-                        JLabel infoLabel = new JLabel("<html>" + "Recorrido: " + recorrido_1 +"<br>"+"Gasolina Actual: "+gasolina_1+ "</html>");
-                        infoLabel.setBounds(60, 0, 200, 190);
-                        infoLabel.setVerticalAlignment(JLabel.TOP);
-                        infoLabel.setVerticalTextPosition(JLabel.TOP);
-                        infoLabel.setAlignmentY(TOP_ALIGNMENT);
-                        infoLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
-                        panel_Vehiculo_1.add(infoLabel);
+                        infoLabel_1 = new JLabel("<html>" + "Recorrido: " + recorrido_1 +"<br>"+"Gasolina Actual: "+gasolina_1+ "</html>");
+                        infoLabel_1.setBounds(60, 0, 200, 190);
+                        infoLabel_1.setVerticalAlignment(JLabel.TOP);
+                        infoLabel_1.setVerticalTextPosition(JLabel.TOP);
+                        infoLabel_1.setAlignmentY(TOP_ALIGNMENT);
+                        infoLabel_1.setFont(Fuentes.getPrincipalFontSize(14, true));
+                        panel_Vehiculo_1.add(infoLabel_1);
                         
                         smallPanel.add(panel_Vehiculo_1);
                         
