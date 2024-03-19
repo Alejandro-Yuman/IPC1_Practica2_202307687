@@ -28,7 +28,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.LookAndFeel;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicScrollBarUI;
@@ -462,25 +464,46 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                 
                 
 
-                JLabel codigoProdLabel = new JLabel(Integer.toString(viajes.get(i).getId()));
-                codigoProdLabel.setBounds(20, 50, 200, 30);
-                codigoProdLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
-                smallPanel.add(codigoProdLabel);
+                JLabel izquierdaLabel = new JLabel("<html>"+viajes.get(i).getVehiculo().getTipo()+"<br>"+"Distancia: "+viajes.get(i).getDistancia()+"<br>"+"Inicio: "+viajes.get(i).getPuntoInicio()+"</html>");
+                izquierdaLabel.setBounds(20, 10, 400, 190);
+                izquierdaLabel.setVerticalAlignment(JLabel.TOP);
+                izquierdaLabel.setVerticalTextPosition(JLabel.TOP);
+                izquierdaLabel.setAlignmentY(TOP_ALIGNMENT);
+                izquierdaLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(izquierdaLabel);
+                
+                JLabel derechaLabel = new JLabel("<html>"+"Destino: "+viajes.get(i).getPuntoFinal()+"</html>");
+                derechaLabel.setBounds(600, 10, 200, 190);
+                derechaLabel.setVerticalAlignment(JLabel.TOP);
+                derechaLabel.setVerticalTextPosition(JLabel.TOP);
+                derechaLabel.setAlignmentY(TOP_ALIGNMENT);
+                derechaLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(derechaLabel);
 
-                JLabel nombreProdLabel = new JLabel(viajes.get(i).getPuntoInicio());
-                nombreProdLabel.setBounds(100, 50, 270, 30);
-                nombreProdLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
-                smallPanel.add(nombreProdLabel);
+                JButton iniciarViajeSingularButton = new JButton("Iniciar");
+                iniciarViajeSingularButton.setBounds(20, 150, 100, 40);
+                iniciarViajeSingularButton.setBackground(Colores.principalBotones);
+                iniciarViajeSingularButton.setFont(Fuentes.getPrincipalFontSize(12, true));
+                iniciarViajeSingularButton.setForeground(Colores.white);
+                iniciarViajeSingularButton.addActionListener(this);
+                iniciarViajeSingularButton.setFocusPainted(false);
+                smallPanel.add(iniciarViajeSingularButton);
 
-                JLabel cantidadProdLabel = new JLabel(viajes.get(i).getPuntoFinal());
-                cantidadProdLabel.setBounds(410, 50, 200, 30);
-                cantidadProdLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
-                smallPanel.add(cantidadProdLabel);
+                JSeparator separadorCamino = new JSeparator();
+                separadorCamino.setBounds(140, 185, 700, 10);
+                separadorCamino.setBackground(Colores.backgroundPanel);
+                separadorCamino.setForeground(Colores.backgroundPanel);
+                smallPanel.add(separadorCamino);
+                
+                JLabel vehiculoLabel = new JLabel(Toolbox.adjustImage(viajes.get(i).getVehiculo().getIconoRuta(), 115, 66));
+                vehiculoLabel.setBounds(130, 120, 115, 66);
+                smallPanel.add(vehiculoLabel);
+                
+                /*JLabel distanciaLabel = new JLabel("Distancia: "+viajes.get(i).getDistancia());
+                distanciaLabel.setBounds(20, 00, 200, 30);
+                distanciaLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(distanciaLabel);*/
 
-                JLabel descripcionProdLabel = new JLabel(Integer.toString( viajes.get(i).getDistancia()));
-                descripcionProdLabel.setBounds(750, 50, 360, 30);
-                descripcionProdLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
-                smallPanel.add(descripcionProdLabel);
                 
                 
                 
@@ -609,8 +632,18 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         
         if(e.getActionCommand().equals("Cargar Rutas (.csv)")){
             JFileChooser fileChooser = new JFileChooser();
+            LookAndFeel previousLF = UIManager.getLookAndFeel();
+            
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                fileChooser = new JFileChooser();
+                UIManager.setLookAndFeel(previousLF);
+            }catch (Exception ex) {
+                
+            }
             FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos CSV", "csv");
             fileChooser.setFileFilter(filtro);
+            fileChooser.setDialogTitle("Seleccione un Archivo");
             int seleccion =  fileChooser.showOpenDialog(this);
             if (seleccion == JFileChooser.APPROVE_OPTION) {
                 File archivo = fileChooser.getSelectedFile();
@@ -790,7 +823,16 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                 listaInicial[i] = arrayPuntos.get(i);
             }
             
-            puntoInicialCombo = new JComboBox(listaInicial);
+            puntoInicialCombo = new JComboBox();
+            LookAndFeel previousLF = UIManager.getLookAndFeel();
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                puntoInicialCombo = new JComboBox(listaInicial);
+                UIManager.setLookAndFeel(previousLF);
+            }catch (Exception ex) {
+                
+            }
+            puntoInicialCombo.setFocusable(false);
             puntoInicialCombo.setBounds(170, 120, 200, 30);
             puntoInicialCombo.setFont(Fuentes.getPrincipalFontSize(12, true));
             puntoInicialCombo.addItemListener(new ItemListener() {
@@ -827,6 +869,15 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             dialogo.add(puntoFinalLabel);
             
             puntoFinalCombo = new JComboBox();
+            previousLF = UIManager.getLookAndFeel();
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                puntoFinalCombo = new JComboBox();
+                UIManager.setLookAndFeel(previousLF);
+            }catch (Exception ex) {
+                
+            }
+            puntoFinalCombo.setFocusable(false);
             puntoFinalCombo.setBounds(540, 120, 200, 30);
             puntoFinalCombo.setFont(Fuentes.getPrincipalFontSize(12, true));
             puntoFinalCombo.setEnabled(false);
@@ -845,7 +896,16 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                 listaCarrosInicial[i] = arrayCarros.get(i).getTipo();
             }
 
-            tipoCarroCombo = new JComboBox(listaCarrosInicial);
+            tipoCarroCombo = new JComboBox();
+            previousLF = UIManager.getLookAndFeel();
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                tipoCarroCombo = new JComboBox(listaCarrosInicial);
+                UIManager.setLookAndFeel(previousLF);
+            }catch (Exception ex) {
+                
+            }
+            tipoCarroCombo.setFocusable(false);
             tipoCarroCombo.setBounds(170, 180, 200, 30);
             tipoCarroCombo.setFont(Fuentes.getPrincipalFontSize(12, true));
             dialogo.add(tipoCarroCombo);
