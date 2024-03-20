@@ -4,10 +4,14 @@
  */
 package controladores;
 
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import listas.ListaVehiculos;
+import listas.ListaViajesActivos;
+import modelos.Viaje;
 import vistas.MenuPrincipal;
-
+import listas.ListaViajesTerminados;
 /**
  *
  * @author Alejandro
@@ -31,8 +35,10 @@ public class ControladorVehiculo_1 extends Thread{
     
     int recorridoActual;
     int recorridoRelativo;
-    
+    int recorridoTotal;
     int recorridoAcumulado;
+    
+    float galConsumidos= 0;
     public ControladorVehiculo_1(MenuPrincipal menu) {
 
         
@@ -89,13 +95,20 @@ public class ControladorVehiculo_1 extends Thread{
                         tanqueGastado = 0;
                         this.menu.gasolina_1Button.setEnabled(false);
                         recorridoRelativo = recorridoActual;
-                        System.out.println("Deberia caminar");
+                        galConsumidos++;
                     }
                     if (this.menu.volver_1) {
+                        this.menu.mensaje_1.setText("");
                         this.menu.volver_1 = false;
                         puedeAvanzar = true;
                         moverIzquierda = true;
                         recorridoAcumulado = recorridoActual;
+                        this.menu.finalizar_1Button.setEnabled(false);
+                        this.menu.vehiculoLabel_1.setSize(1*(this.menu.vehiculoLabel_1.getWidth()),this.menu.vehiculoLabel_1.getHeight());
+                    }
+                    if (this.menu.finalizar_1) {
+                        finalizar();
+                        
                     }
                 }
 
@@ -108,7 +121,10 @@ public class ControladorVehiculo_1 extends Thread{
         }
 
     }
-    
+
+    public void kill() {
+        running = false;
+    }
     
     void moverDerecha(){
         //Cambiar la posicion del label y panel dependiendo de la velocidad
@@ -141,6 +157,9 @@ public class ControladorVehiculo_1 extends Thread{
             moverDerecha = false;
             puedeAvanzar = false;
             this.menu.retorno_1Button.setEnabled(true);
+            this.menu.finalizar_1Button.setEnabled(true);
+            recorridoTotal = recorridoActual;
+            this.menu.mensaje_1.setText("Llegaste a tu destino");
         }
        
 
@@ -157,7 +176,6 @@ public class ControladorVehiculo_1 extends Thread{
         
         
         //Calculo del recorrido
-        System.out.println(555-(this.menu.vehiculoLabel_1.getX() - 130));
         recorridoActual = (int) (Math.round((555-(this.menu.vehiculoLabel_1.getX() - 130)) * cambioDistancia * 100) / 100)+recorridoAcumulado;
         this.menu.recorrido_1 = recorridoActual;
         
@@ -179,11 +197,24 @@ public class ControladorVehiculo_1 extends Thread{
             moverDerecha = false;
             puedeAvanzar = false;
             this.menu.gasolina_1Button.setEnabled(false);
-            this.menu.retorno_1Button.setEnabled(true);
+            this.menu.retorno_1Button.setEnabled(false);
+            this.menu.finalizar_1Button.setEnabled(true);
+            recorridoTotal = recorridoActual;
+            this.menu.mensaje_1.setText("Llegaste a tu destino");
         }
        
 
     }
     
+    void finalizar(){
+        ListaViajesActivos.eliminarViajeActivo(this.menu.viaje_1.getId());
+        Viaje viajeTemp = this.menu.viaje_1;
+        viajeTemp.setDatosFinalizar(LocalDateTime.now(), (galConsumidos*capacidadMax)+tanqueGastado, recorridoTotal);
+        ListaViajesTerminados.addViajeTerminados(viajeTemp);
+        this.menu.gasolina_1Button.setEnabled(false);
+        this.menu.retorno_1Button.setEnabled(false);
+        ListaVehiculos.setActivoByTipo( this.menu.viaje_1.getVehiculo().getTipo(), false);
+        this.kill();
+    }
   
 }

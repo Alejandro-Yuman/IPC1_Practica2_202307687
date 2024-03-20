@@ -41,7 +41,7 @@ public class ListaVehiculos {
     
     public static void setActivoByTipo(String tipo, boolean estado){
         for (int i = 0; i < vehiculos.size(); i++) {
-            if (vehiculos.get(i).getTipo() == tipo) {
+            if (vehiculos.get(i).getTipo().equals(tipo)) {
                 vehiculos.get(i).setEnUso(estado);
             }
         }

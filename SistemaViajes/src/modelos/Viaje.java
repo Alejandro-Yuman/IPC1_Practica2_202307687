@@ -16,7 +16,7 @@ public class Viaje {
     private String puntoFinal;
     private Vehiculo vehiculo;
     private int distancia;
-    private int gasolinaConsumida;
+    private float gasolinaConsumida;
     private LocalDateTime  fechaInicio;
     private LocalDateTime  fechaFinal;
     private boolean activo;
@@ -31,9 +31,10 @@ public class Viaje {
         activo = true;
     }
     
-    public void setDatosFinalizar(LocalDateTime fecha, int gas){
+    public void setDatosFinalizar(LocalDateTime fecha, float gas ,int distancia){
         this.gasolinaConsumida = gas;
         this.fechaFinal = fecha;
+        this.distancia = distancia;
         activo = false;
     }
 
@@ -86,7 +87,7 @@ public class Viaje {
         this.distancia = distancia;
     }
 
-    public int getGasolinaConsumida() {
+    public float getGasolinaConsumida() {
         return gasolinaConsumida;
     }
 

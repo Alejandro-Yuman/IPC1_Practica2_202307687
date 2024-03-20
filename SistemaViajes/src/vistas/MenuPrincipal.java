@@ -41,6 +41,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 import listas.ListaRutas;
 import listas.ListaVehiculos;
 import listas.ListaViajesActivos;
+import listas.ListaViajesTerminados;
 import modelos.Ruta;
 import modelos.Vehiculo;
 import modelos.Viaje;
@@ -77,6 +78,10 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     public JLabel vehiculoLabel_2;
     public JLabel vehiculoLabel_3;
     
+    public JLabel mensaje_1;
+    public JLabel mensaje_2;
+    public JLabel mensaje_3;
+    
     public Rectangle moto_rect1;
     public Rectangle moto_rect2;
     public Rectangle moto_rect3;
@@ -101,6 +106,14 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     public JButton retorno_2Button;
     public JButton retorno_3Button;
     
+    public JButton finalizar_1Button;
+    public JButton finalizar_2Button;
+    public JButton finalizar_3Button;
+    
+    public boolean finalizar_1;
+    public boolean finalizar_2;
+    public boolean finalizar_3;
+    
     public boolean volver_1;
     public boolean volver_2;
     public boolean volver_3;
@@ -110,6 +123,8 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     public boolean gasolinaDisponible_3 = false;
     
     public JLabel infoLabel_1;
+    public JLabel infoLabel_2;
+    public JLabel infoLabel_3;
     
     public Rectangle metaFinal;
     public Rectangle metaInicial;
@@ -339,7 +354,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             editarDistanciaButton.setFocusPainted(false);
             panelRutas.add(editarDistanciaButton);
             
-            //----------------------------------Inicio Tabla Productos
+            //----------------------------------Inicio Tabla Rutas
             
             JLabel tituloCodigoLabel = new JLabel("Codigo");
             tituloCodigoLabel.setBounds(25, 180, 200, 30);
@@ -421,7 +436,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             scrollPane.setBorder(null);
             scrollPane.setBounds(20, 220, 880, 400);
             panelRutas.add(scrollPane);
-            //----------------------------------Fin Tabla Productos
+            //----------------------------------Fin Tabla Rutas
             
 
             
@@ -537,6 +552,8 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                 int i_here = i;
                 iniciarViajeSingularButton.addActionListener(new ActionListener() { 
                     public void actionPerformed(ActionEvent e) {
+                        crearViajeButton.setEnabled(false);
+                        iniciarViajeSingularButton.setEnabled(false);
                         int i_here_2 = i_here;
                         switch (i_here_2) {
                             case 0:
@@ -570,7 +587,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         viaje_1 = viajes.get(i_here);
                         
                         panel_Vehiculo_1 = new JPanel();
-                        panel_Vehiculo_1.setBounds(130, 70, 170, 50);
+                        panel_Vehiculo_1.setBounds(130, 70, 190, 50);
                         panel_Vehiculo_1.setBackground(null);
                         panel_Vehiculo_1.setLayout(null);
                         
@@ -605,7 +622,33 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                             }
                         });
                         smallPanel.add(retorno_1Button);
+                        
+                        finalizar_1Button = new JButton();
+                        finalizar_1Button.setBounds(820, 10, 50, 40);
+                        finalizar_1Button.setBackground(Colores.principalBotones);
+                        finalizar_1Button.setFont(Fuentes.getPrincipalFontSize(12, true));
+                        finalizar_1Button.setForeground(Colores.white);
+                        finalizar_1Button.setIcon(Toolbox.adjustImage("../img/Volver.png", 30, 30));
+                        finalizar_1Button.setFocusPainted(false);
+                        finalizar_1Button.setEnabled(false);
+                        finalizar_1Button.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                finalizar_1 = true;
+                                finalizar_1Button.setEnabled(false);
+                            }
+                        });
+                        smallPanel.add(finalizar_1Button);
 
+                        
+                        mensaje_1 = new JLabel();                   
+                        mensaje_1.setBounds(250, 10, 200, 190);
+                        mensaje_1.setVerticalAlignment(JLabel.TOP);
+                        mensaje_1.setVerticalTextPosition(JLabel.TOP);
+                        mensaje_1.setForeground(Colores.red);
+                        mensaje_1.setAlignmentY(TOP_ALIGNMENT);
+                        mensaje_1.setFont(Fuentes.getPrincipalFontSize(14, true));
+                        smallPanel.add(mensaje_1);
+                        
                         infoLabel_1 = new JLabel("<html>" + "Recorrido: " + recorrido_1 +"<br>"+"Gasolina Actual: "+gasolina_1+ "</html>");
                         infoLabel_1.setBounds(60, 0, 200, 190);
                         infoLabel_1.setVerticalAlignment(JLabel.TOP);
@@ -725,7 +768,109 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             separador.setBackground(Colores.backgroundPanel);
             separador.setForeground(Colores.backgroundPanel);
             panelHistorial.add(separador);
-            //-------------------------Inicio Contendido
+            
+            //----------------------------------Inicio Tabla Rutas
+            JLabel tituloCodigoLabel = new JLabel("Codigo");
+            tituloCodigoLabel.setBounds(25, 100, 200, 30);
+            tituloCodigoLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+            panelHistorial.add(tituloCodigoLabel);
+
+            JLabel tituloNombreLabel = new JLabel("Fecha Inicio");
+            tituloNombreLabel.setBounds(120, 100, 200, 30);
+            tituloNombreLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+            panelHistorial.add(tituloNombreLabel);
+
+            JLabel tituloCantidadLabel = new JLabel("Fecha Final");
+            tituloCantidadLabel.setBounds(290, 100, 200, 30);
+            tituloCantidadLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+            panelHistorial.add(tituloCantidadLabel);
+
+            JLabel tituloDescripcionLabel = new JLabel("Distancia (km)");
+            tituloDescripcionLabel.setBounds(440, 100, 200, 30);
+            tituloDescripcionLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+            panelHistorial.add(tituloDescripcionLabel);
+
+            JLabel tipoLabel = new JLabel("Tipo");
+            tipoLabel.setBounds(600, 100, 200, 30);
+            tipoLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+            panelHistorial.add(tipoLabel);
+            
+            JLabel GasolinaLabel = new JLabel("Gasolina Consumida");
+            GasolinaLabel.setBounds(700, 100, 200, 30);
+            GasolinaLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+            panelHistorial.add(GasolinaLabel);
+
+            JPanel principal = new JPanel();
+            principal.setLayout(new GridBagLayout());
+            principal.setBackground(Colores.background);
+
+            ArrayList<Viaje> viajes = ListaViajesTerminados.getViajesTerminados();
+
+            for (int i = 0; i < viajes.size(); i++) {
+                JPanel smallPanel = new JPanel();
+                smallPanel.setBackground(Colores.backgroundSecundario);
+                smallPanel.setBorder(BorderFactory.createLineBorder(Colores.principalBotones));
+                smallPanel.setBounds(10, 10, 200, 200);
+                //smallPanel.setLayout(new GridBagLayout());
+                smallPanel.setLayout(null);
+
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.gridx = 0;
+                //gbc.gridy = principal.getComponentCount(); 
+                gbc.fill = GridBagConstraints.HORIZONTAL;
+                //gbc.anchor = GridBagConstraints.PAGE_START;
+                gbc.ipady = 130;
+                gbc.insets = new Insets(2, 0, 2, 0);
+                gbc.weightx = 1.0;
+
+                JLabel codigoLabel = new JLabel(Integer.toString(viajes.get(i).getId()));
+                codigoLabel.setBounds(20, 50, 200, 30);
+                codigoLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(codigoLabel);
+
+                JLabel fechaInicioLabel = new JLabel(Integer.toString(viajes.get(i).getFechaInicio().getDayOfWeek().getValue())+"/"+Integer.toString(viajes.get(i).getFechaInicio().getMonth().getValue())+"/"+Integer.toString(viajes.get(i).getFechaInicio().getYear())+" "+Integer.toString(viajes.get(i).getFechaInicio().getHour())+":"+Integer.toString(viajes.get(i).getFechaInicio().getMinute()));
+                fechaInicioLabel.setBounds(100, 50, 270, 30);
+                fechaInicioLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(fechaInicioLabel);
+                
+                JLabel fechaFinalLabel = new JLabel(Integer.toString(viajes.get(i).getFechaFinal().getDayOfWeek().getValue())+"/"+Integer.toString(viajes.get(i).getFechaFinal().getMonth().getValue())+"/"+Integer.toString(viajes.get(i).getFechaFinal().getYear())+" "+Integer.toString(viajes.get(i).getFechaFinal().getHour())+":"+Integer.toString(viajes.get(i).getFechaFinal().getMinute()));
+                fechaFinalLabel.setBounds(270, 50, 270, 30);
+                fechaFinalLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(fechaFinalLabel);
+
+                JLabel distanciaLabel = new JLabel(Integer.toString(viajes.get(i).getDistancia()));
+                distanciaLabel.setBounds(460, 50, 200, 30);
+                distanciaLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(distanciaLabel);
+
+                JLabel vehiculoLabel = new JLabel(viajes.get(i).getVehiculo().getTipo());
+                vehiculoLabel.setBounds(550, 50, 200, 30);
+                vehiculoLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(vehiculoLabel);
+
+                JLabel gasConsumidaProdLabel = new JLabel(String.valueOf( viajes.get(i).getGasolinaConsumida()));
+                gasConsumidaProdLabel.setBounds(750, 50, 360, 30);
+                gasConsumidaProdLabel.setFont(Fuentes.getPrincipalFontSize(14, true));
+                smallPanel.add(gasConsumidaProdLabel);
+
+                principal.add(smallPanel, gbc);
+
+            }
+
+            JScrollPane scrollPane = new JScrollPane(principal);
+            scrollPane.getVerticalScrollBar().setBackground(Colores.background);
+            scrollPane.getHorizontalScrollBar().setBackground(Colores.background);
+            scrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+                @Override
+                protected void configureScrollBarColors() {
+                    this.thumbColor = Colores.backgroundPanel;
+                }
+            });
+            scrollPane.setBorder(null);
+            scrollPane.setBounds(20, 140, 880, 480);
+            panelHistorial.add(scrollPane);
+            //----------------------------------Fin Tabla Productos
+            //-------------------------Fin Contendido
 
             this.add(panelHistorial);
             try {
