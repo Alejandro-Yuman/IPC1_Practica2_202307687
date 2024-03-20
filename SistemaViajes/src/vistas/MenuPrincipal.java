@@ -148,7 +148,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         panelPrincipalderecha.setBackground(Colores.backgroundPanel);
         
         
-        JLabel logoLabel = new JLabel(Toolbox.adjustImage("../img/ApertureWhite.png", 165, 45));
+        JLabel logoLabel = new JLabel(Toolbox.adjustImage("/img/ApertureWhite.png", 165, 45));
         logoLabel.setBounds(35, 20, 165, 45);
         panelPrincipalderecha.add(logoLabel);
 
@@ -174,7 +174,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         inicioButton.setFont(Fuentes.getPrincipalFontSize(12, true));
         inicioButton.setForeground(Colores.white);
         inicioButton.setHorizontalAlignment(SwingConstants.LEFT);
-        inicioButton.setIcon(Toolbox.adjustImage("../img/Inicio.png", 30, 30));
+        inicioButton.setIcon(Toolbox.adjustImage("/img/Inicio.png", 30, 30));
         inicioButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         inicioButton.setFocusPainted(false);
         inicioButton.addActionListener(this);
@@ -187,7 +187,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         rutasButton.setFont(Fuentes.getPrincipalFontSize(12, true));
         rutasButton.setForeground(Colores.white);
         rutasButton.setHorizontalAlignment(SwingConstants.LEFT);
-        rutasButton.setIcon(Toolbox.adjustImage("../img/Rutas.png", 30, 30));
+        rutasButton.setIcon(Toolbox.adjustImage("/img/Rutas.png", 30, 30));
         rutasButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         rutasButton.setFocusPainted(false);
         rutasButton.addActionListener(this);
@@ -200,7 +200,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         viajesButton.setFont(Fuentes.getPrincipalFontSize(12, true));
         viajesButton.setForeground(Colores.white);
         viajesButton.setHorizontalAlignment(SwingConstants.LEFT);
-        viajesButton.setIcon(Toolbox.adjustImage("../img/Viajes.png", 30, 30));
+        viajesButton.setIcon(Toolbox.adjustImage("/img/Viajes.png", 30, 30));
         viajesButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         viajesButton.setFocusPainted(false);
         viajesButton.addActionListener(this);
@@ -213,7 +213,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         historialButton.setFont(Fuentes.getPrincipalFontSize(12, true));
         historialButton.setForeground(Colores.white);
         historialButton.setHorizontalAlignment(SwingConstants.LEFT);
-        historialButton.setIcon(Toolbox.adjustImage("../img/Historial.png", 30, 30));
+        historialButton.setIcon(Toolbox.adjustImage("/img/Historial.png", 30, 30));
         historialButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         historialButton.setFocusPainted(false);
         historialButton.addActionListener(this);
@@ -270,12 +270,12 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             panelInfo.setLayout(null);
             panelInfo.setBackground(Colores.backgroundPanel);
             
-            JLabel fondoLabel = new JLabel(Toolbox.adjustImage("../img/background.png", 640, 360));
+            JLabel fondoLabel = new JLabel(Toolbox.adjustImage("/img/background.png", 640, 360));
             fondoLabel.setBounds(30, 20, 640, 360);
             panelInfo.add(fondoLabel);
             
                     
-            JLabel logoTransportLabel = new JLabel(Toolbox.adjustImage("../img/ApertureWhite.png", 165, 45));
+            JLabel logoTransportLabel = new JLabel(Toolbox.adjustImage("/img/ApertureWhite.png", 165, 45));
             logoTransportLabel.setBounds(20, 420, 165, 45);
             panelInfo.add(logoTransportLabel);
 
@@ -285,7 +285,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             mediaFraseLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
             panelInfo.add(mediaFraseLabel);
             
-            JLabel logoApertureLabel = new JLabel(Toolbox.adjustImage("../img/LogoCompletoWhite.png", 165, 45));
+            JLabel logoApertureLabel = new JLabel(Toolbox.adjustImage("/img/LogoCompletoWhite.png", 165, 45));
             logoApertureLabel.setBounds(500, 420, 165, 45);
             panelInfo.add(logoApertureLabel);
             
@@ -596,7 +596,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         gasolina_1Button.setBackground(Colores.principalBotones);
                         gasolina_1Button.setFont(Fuentes.getPrincipalFontSize(12, true));
                         gasolina_1Button.setForeground(Colores.white);
-                        gasolina_1Button.setIcon(Toolbox.adjustImage("../img/Gasolina.png", 30, 30));
+                        gasolina_1Button.setIcon(Toolbox.adjustImage("/img/Gasolina.png", 30, 30));
                         gasolina_1Button.setFocusPainted(false);
                         gasolina_1Button.setEnabled(false);
                         gasolina_1Button.addActionListener(new ActionListener() {
@@ -612,7 +612,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         retorno_1Button.setBackground(Colores.principalBotones);
                         retorno_1Button.setFont(Fuentes.getPrincipalFontSize(12, true));
                         retorno_1Button.setForeground(Colores.white);
-                        retorno_1Button.setIcon(Toolbox.adjustImage("../img/Volver.png", 30, 30));
+                        retorno_1Button.setIcon(Toolbox.adjustImage("/img/Volver.png", 30, 30));
                         retorno_1Button.setFocusPainted(false);
                         retorno_1Button.setEnabled(false);
                         retorno_1Button.addActionListener(new ActionListener() {
@@ -628,7 +628,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         finalizar_1Button.setBackground(Colores.principalBotones);
                         finalizar_1Button.setFont(Fuentes.getPrincipalFontSize(12, true));
                         finalizar_1Button.setForeground(Colores.white);
-                        finalizar_1Button.setIcon(Toolbox.adjustImage("../img/Volver.png", 30, 30));
+                        finalizar_1Button.setIcon(Toolbox.adjustImage("/img/Volver.png", 30, 30));
                         finalizar_1Button.setFocusPainted(false);
                         finalizar_1Button.setEnabled(false);
                         finalizar_1Button.addActionListener(new ActionListener() {
@@ -965,7 +965,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             panelSuperior.setLayout(null);
             panelSuperior.setBackground(Colores.backgroundPanel);
             
-            JLabel imageLabel = new JLabel(Toolbox.adjustImage("../img/EditarWhite.png", 40, 40));
+            JLabel imageLabel = new JLabel(Toolbox.adjustImage("/img/EditarWhite.png", 40, 40));
             imageLabel.setBounds(15, 20, 40, 40);
             panelSuperior.add(imageLabel);
                         
@@ -975,7 +975,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             editarLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
             panelSuperior.add(editarLabel);
             
-            JLabel logoTransportLabel = new JLabel(Toolbox.adjustImage("../img/ApertureWhite.png", 165, 45));
+            JLabel logoTransportLabel = new JLabel(Toolbox.adjustImage("/img/ApertureWhite.png", 165, 45));
             logoTransportLabel.setBounds(600, 17, 165, 45);
             panelSuperior.add(logoTransportLabel);
             
@@ -1094,7 +1094,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             panelSuperior.setLayout(null);
             panelSuperior.setBackground(Colores.backgroundPanel);
             
-            JLabel imageLabel = new JLabel(Toolbox.adjustImage("../img/CrearWhite.png", 40, 40));
+            JLabel imageLabel = new JLabel(Toolbox.adjustImage("/img/CrearWhite.png", 40, 40));
             imageLabel.setBounds(15, 20, 40, 40);
             panelSuperior.add(imageLabel);
                         
@@ -1104,7 +1104,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             editarLabel.setFont(Fuentes.getPrincipalFontSize(16, true));
             panelSuperior.add(editarLabel);
             
-            JLabel logoTransportLabel = new JLabel(Toolbox.adjustImage("../img/ApertureWhite.png", 165, 45));
+            JLabel logoTransportLabel = new JLabel(Toolbox.adjustImage("/img/ApertureWhite.png", 165, 45));
             logoTransportLabel.setBounds(600, 17, 165, 45);
             panelSuperior.add(logoTransportLabel);
             

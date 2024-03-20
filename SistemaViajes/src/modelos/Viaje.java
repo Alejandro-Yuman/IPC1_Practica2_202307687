@@ -4,13 +4,14 @@
  */
 package modelos;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author reneb
  */
-public class Viaje {
+public class Viaje  implements Serializable{
     private int id;
     private String puntoInicio;
     private String puntoFinal;

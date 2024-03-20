@@ -6,18 +6,23 @@ package listas;
 
 import java.util.ArrayList;
 import modelos.Viaje;
+import utils.Toolbox;
 
 /**
  *
  * @author Alejandro
  */
 public class ListaViajesTerminados {
-         static ArrayList<Viaje> viajesTerminados = new ArrayList<Viaje>();
+    static ArrayList<Viaje> viajesTerminados = new ArrayList<Viaje>();
     
     public static void printViajesTerminados() {
         for (int i = 0; i < viajesTerminados.size(); i++) {
             System.out.println("inicio " + viajesTerminados.get(i).getPuntoFinal()+"final " + viajesTerminados.get(i).getPuntoFinal()+ " id="+viajesTerminados.get(i).getId());
         }
+    }
+    
+    public static void setLista(ArrayList<Viaje> listaAñadir){
+        viajesTerminados = listaAñadir;
     }
     
     public static Viaje getViajeTerminado(int id){
@@ -34,23 +39,28 @@ public class ListaViajesTerminados {
         for (int i = 0; i < viajesTerminados.size(); i++) {
             if(viajesTerminados.get(i).getId() == id){
                 viajesTerminados.remove(i);
+                mandarSerializar();
                 break;
             }
         }
+        
     }
         public static void addViajeTerminados(Viaje viajeTerminados) {
         viajeTerminados.setId(generarId());
         viajesTerminados.add(viajeTerminados);
+        mandarSerializar();
     }
     
     public static void editViajeTerminados(Viaje viajeTerminados, int id){
         for (int i = 0; i < viajesTerminados.size(); i++) {
             if(viajesTerminados.get(i).getId() == id){
                 viajesTerminados.set(i, viajeTerminados);
+                mandarSerializar();
                 break;
                 
             }
         }
+        
     }
     
     public static ArrayList<Viaje> getViajesTerminados(){
@@ -74,5 +84,9 @@ public class ListaViajesTerminados {
         }
         
         
+    }
+    
+    private static void mandarSerializar(){
+        Toolbox.SerializarTerminados();
     }
 }

@@ -20,6 +20,10 @@ public class ListaViajesActivos {
         }
     }
     
+    public static void setLista(ArrayList<Viaje> listaAñadir){
+        viajesActivos = listaAñadir;
+    }
+    
     public static int getTamaño(){
         return viajesActivos.size();
     }

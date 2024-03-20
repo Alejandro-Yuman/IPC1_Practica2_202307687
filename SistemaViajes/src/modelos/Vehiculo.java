@@ -4,11 +4,13 @@
  */
 package modelos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author reneb
  */
-public class Vehiculo {
+public class Vehiculo implements Serializable {
     private int id;
     private float consumo;
     private int capacidad;
