@@ -93,6 +93,14 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     public int gasolina_2 =0;
     public int gasolina_3 =0;
     
+    public JButton gasolina_1Button;
+    public JButton gasolina_2Button;
+    public JButton gasolina_3Button;
+    
+    public boolean gasolinaDisponible_1 = false;
+    public boolean gasolinaDisponible_2 = false;
+    public boolean gasolinaDisponible_3 = false;
+    
     public JLabel infoLabel_1;
     
     public Rectangle metaFinal;
@@ -558,14 +566,20 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         panel_Vehiculo_1.setBackground(null);
                         panel_Vehiculo_1.setLayout(null);
                         
-                        JButton gasolina_1Button = new JButton();
+                        gasolina_1Button = new JButton();
                         gasolina_1Button.setBounds(0, 0, 50, 40);
                         gasolina_1Button.setBackground(Colores.principalBotones);
                         gasolina_1Button.setFont(Fuentes.getPrincipalFontSize(12, true));
                         gasolina_1Button.setForeground(Colores.white);
-                        gasolina_1Button.addActionListener(this);
                         gasolina_1Button.setIcon(Toolbox.adjustImage("../img/Gasolina.png", 30, 30));
                         gasolina_1Button.setFocusPainted(false);
+                        gasolina_1Button.setEnabled(false);
+                        gasolina_1Button.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                gasolinaDisponible_1 = true;
+                                gasolina_1Button.setEnabled(false);
+                            }
+                        });
                         panel_Vehiculo_1.add(gasolina_1Button);
                         
                         

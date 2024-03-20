@@ -23,10 +23,14 @@ public class ControladorVehiculo_1 extends Thread{
     
     boolean moverDerecha = false;
     boolean moverIzquierda = false;
+    boolean puedeAvanzar;
     
     float capacidadMax;
     float tanqueGastado;
     float gasto;
+    
+    int recorridoActual;
+    int recorridoRelativo;
     public ControladorVehiculo_1(MenuPrincipal menu) {
 
         
@@ -59,6 +63,7 @@ public class ControladorVehiculo_1 extends Thread{
         
         
         moverDerecha = true;
+        puedeAvanzar = true;
         
     }
 
@@ -66,15 +71,27 @@ public class ControladorVehiculo_1 extends Thread{
     public void run(){
         while (running) {
             try {
-                // El hilo se duerme por 1 segundo
                 Thread.sleep(100);
-                if (moverDerecha) {
-                    moverDerecha();
-                }else if(moverIzquierda){
-                
+                if (puedeAvanzar) {
+                    if (moverDerecha) {
+                        moverDerecha();
+                    } else if (moverIzquierda) {
+
+                    } else {
+
+                    }
                 }else{
-                    
+                    if (this.menu.gasolinaDisponible_1) {
+                        this.menu.gasolinaDisponible_1 = false;
+                        puedeAvanzar = true;
+                        tanqueGastado = 0;
+                        this.menu.gasolina_1Button.setEnabled(false);
+                        recorridoRelativo = recorridoActual;
+                        System.out.println("Deberia caminar");
+                    }
                 }
+
+
 
                 
             } catch (InterruptedException ex) {
@@ -95,10 +112,17 @@ public class ControladorVehiculo_1 extends Thread{
         
         
         //Calculo del recorrido
-        int recorridoAcutal = (int) Math.round((this.menu.vehiculoLabel_1.getX() - 130) * cambioDistancia * 100) / 100;
-        this.menu.recorrido_1 = recorridoAcutal;
+        recorridoActual = (int) Math.round((this.menu.vehiculoLabel_1.getX() - 130) * cambioDistancia * 100) / 100;
+        this.menu.recorrido_1 = recorridoActual;
         
-        tanqueGastado = gasto*recorridoAcutal;
+        
+        
+        tanqueGastado = gasto*(recorridoActual-recorridoRelativo);
+        if (tanqueGastado >= capacidadMax) {
+            puedeAvanzar = false;
+            tanqueGastado = capacidadMax;
+            this.menu.gasolina_1Button.setEnabled(true);
+        }
 
         
         this.menu.infoLabel_1.setText("<html>" + "Recorrido: " + String.valueOf(this.menu.recorrido_1) + "<br>" + "Gasolina: " +  (float) Math.round((capacidadMax - tanqueGastado) * 100) / 100 + "</html>");
@@ -108,9 +132,8 @@ public class ControladorVehiculo_1 extends Thread{
         if (this.menu.moto_rect1.intersects(this.menu.metaFinal)) {
             moverDerecha = false;
         }
-        if (tanqueGastado >= capacidadMax) {
-            moverDerecha = false;
-        }
+       
+
     }
     
     
