@@ -97,6 +97,14 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     public JButton gasolina_2Button;
     public JButton gasolina_3Button;
     
+    public JButton retorno_1Button;
+    public JButton retorno_2Button;
+    public JButton retorno_3Button;
+    
+    public boolean volver_1;
+    public boolean volver_2;
+    public boolean volver_3;
+    
     public boolean gasolinaDisponible_1 = false;
     public boolean gasolinaDisponible_2 = false;
     public boolean gasolinaDisponible_3 = false;
@@ -562,7 +570,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         viaje_1 = viajes.get(i_here);
                         
                         panel_Vehiculo_1 = new JPanel();
-                        panel_Vehiculo_1.setBounds(130, 70, 400, 50);
+                        panel_Vehiculo_1.setBounds(130, 70, 170, 50);
                         panel_Vehiculo_1.setBackground(null);
                         panel_Vehiculo_1.setLayout(null);
                         
@@ -582,7 +590,21 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         });
                         panel_Vehiculo_1.add(gasolina_1Button);
                         
-                        
+                        retorno_1Button = new JButton();
+                        retorno_1Button.setBounds(820, 140, 50, 40);
+                        retorno_1Button.setBackground(Colores.principalBotones);
+                        retorno_1Button.setFont(Fuentes.getPrincipalFontSize(12, true));
+                        retorno_1Button.setForeground(Colores.white);
+                        retorno_1Button.setIcon(Toolbox.adjustImage("../img/Volver.png", 30, 30));
+                        retorno_1Button.setFocusPainted(false);
+                        retorno_1Button.setEnabled(false);
+                        retorno_1Button.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                volver_1 = true;
+                                retorno_1Button.setEnabled(false);
+                            }
+                        });
+                        smallPanel.add(retorno_1Button);
 
                         infoLabel_1 = new JLabel("<html>" + "Recorrido: " + recorrido_1 +"<br>"+"Gasolina Actual: "+gasolina_1+ "</html>");
                         infoLabel_1.setBounds(60, 0, 200, 190);
@@ -631,7 +653,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
 
                 
                 JLabel inicioLabel = new JLabel();
-                inicioLabel.setBounds(130, 150, 30, 30);
+                inicioLabel.setBounds(100, 150, 30, 30);
                 //inicioLabel.setBorder(borde);
                 metaInicial = inicioLabel.getBounds();
                 
