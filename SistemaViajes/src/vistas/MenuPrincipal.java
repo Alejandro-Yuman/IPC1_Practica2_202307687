@@ -218,7 +218,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         historialButton.setFocusPainted(false);
         historialButton.addActionListener(this);
         panelBotones.add(historialButton);
-        
+         
         //-------------------------------------Fin Botones
         
         panelPrincipalderecha.add(panelBotones);
