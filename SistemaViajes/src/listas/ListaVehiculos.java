@@ -6,6 +6,7 @@ package listas;
 
 import java.util.ArrayList;
 import modelos.Vehiculo;
+import utils.Toolbox;
 
 /**
  *
@@ -18,6 +19,10 @@ public class ListaVehiculos {
         for (int i = 0; i < vehiculos.size(); i++) {
             System.out.println("id " + vehiculos.get(i).getId()+"tipo " + vehiculos.get(i).getTipo()+ " consumo="+vehiculos.get(i).getConsumo());
         }
+    }
+    
+    public static void setLista(ArrayList<Vehiculo> listaAñadir){
+        vehiculos = listaAñadir;
     }
     
     public static Vehiculo getVehiculo(int id){
@@ -43,6 +48,7 @@ public class ListaVehiculos {
         for (int i = 0; i < vehiculos.size(); i++) {
             if (vehiculos.get(i).getTipo().equals(tipo)) {
                 vehiculos.get(i).setEnUso(estado);
+                Toolbox.SerializarVehiculos();
             }
         }
         

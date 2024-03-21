@@ -207,6 +207,7 @@ public class ControladorVehiculo_1 extends Thread{
     }
     
     void finalizar(){
+        this.menu.moviendo_1 = false;
         ListaViajesActivos.eliminarViajeActivo(this.menu.viaje_1.getId());
         Viaje viajeTemp = this.menu.viaje_1;
         viajeTemp.setDatosFinalizar(LocalDateTime.now(), (galConsumidos*capacidadMax)+tanqueGastado, recorridoTotal);

@@ -16,9 +16,11 @@ import java.util.Scanner;
 import javax.sound.sampled.AudioInputStream;
 import javax.swing.ImageIcon;
 import listas.ListaRutas;
+import listas.ListaVehiculos;
 import listas.ListaViajesActivos;
 import listas.ListaViajesTerminados;
 import modelos.Ruta;
+import modelos.Vehiculo;
 import modelos.Viaje;
 
 /**
@@ -110,5 +112,30 @@ public class Toolbox {
         }
     }
 
+        public static void SerializarVehiculos(){
+        try{
+            String directionFile ="./datos/Info_Vehiculos.bin";
+            ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(directionFile));
+            salida.writeObject(ListaVehiculos.getVehiculos());
+            salida.close();
+            System.out.println("Serializcion Exitosamente");
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Vehiculo> DeserializarVehiculos(){
+        try{
+            String directionFile ="./datos/Info_Vehiculos.bin";
+            ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(directionFile));
+            
+            ArrayList<Vehiculo> Vehiculos = (ArrayList<Vehiculo>)entrada.readObject();
+            entrada.close();
+            System.out.println("Datos Deserializados Exitosamente");
+            return Vehiculos;
+        }catch (Exception ex) {
+            return null;
+        }
+    }
 
 }

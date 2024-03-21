@@ -84,6 +84,10 @@ public class MenuPrincipal extends JFrame implements ActionListener{
     public JLabel mensaje_2;
     public JLabel mensaje_3;
     
+    public boolean moviendo_1 = false;
+    public boolean moviendo_2 = false;
+    public boolean moviendo_3 = false;
+    
     public Rectangle moto_rect1;
     public Rectangle moto_rect2;
     public Rectangle moto_rect3;
@@ -500,7 +504,42 @@ public class MenuPrincipal extends JFrame implements ActionListener{
             iniciarViajeButton.setBackground(Colores.principalBotones);
             iniciarViajeButton.setFont(Fuentes.getPrincipalFontSize(12, true));
             iniciarViajeButton.setForeground(Colores.white);
-            iniciarViajeButton.addActionListener(this);
+            iniciarViajeButton.addActionListener(new ActionListener() { 
+                    public void actionPerformed(ActionEvent e) {
+                        ArrayList<Viaje> viajes = ListaViajesActivos.getViajesActivo();
+                        for (int i = 0; i < viajes.size(); i++) {
+                            switch (i) {
+                                
+                                case 0:
+                                    if (!moviendo_1) {
+                                        moviendo_1 = true;
+                                        ControladorVehiculo_1 controlador1 = new ControladorVehiculo_1(MenuPrincipal.this);
+                                        controlador1.start();
+                                    }
+                                break;
+                                
+                                case 1:
+                                    if (!moviendo_2) {
+                                        moviendo_2 = true;
+                                        ControladorVehiculo_2 controlador2 = new ControladorVehiculo_2(MenuPrincipal.this);
+                                        controlador2.start();
+                                    }
+                                break;
+                                
+                                case 2:
+                                    if (!moviendo_3) {
+                                        moviendo_3 = true;
+                                        ControladorVehiculo_3 controlador3 = new ControladorVehiculo_3(MenuPrincipal.this);
+                                        controlador3.start();
+                                    }
+                                break;
+                                default:
+                                    throw new AssertionError();
+                            }
+                        }
+                        
+                    }
+                });
             iniciarViajeButton.setFocusPainted(false);
             panelViajes.add(iniciarViajeButton);
 
@@ -559,16 +598,19 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         int i_here_2 = i_here;
                         switch (i_here_2) {
                             case 0:
+                                moviendo_1 = true;
                                 ControladorVehiculo_1 controlador1 = new ControladorVehiculo_1(MenuPrincipal.this);
                                 controlador1.start();
                                 break;
                             case 1:
                                 ControladorVehiculo_2 controlador2 = new ControladorVehiculo_2(MenuPrincipal.this);
                                 controlador2.start();
+                                moviendo_2 = true;
                                 break;
                             case 2:
                                 ControladorVehiculo_3 controlador3 = new ControladorVehiculo_3(MenuPrincipal.this);
                                 controlador3.start();
+                                moviendo_3 = true;
                                 break;
                             default:
                                 throw new AssertionError();
@@ -632,7 +674,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         finalizar_1Button.setBackground(Colores.principalBotones);
                         finalizar_1Button.setFont(Fuentes.getPrincipalFontSize(12, true));
                         finalizar_1Button.setForeground(Colores.white);
-                        finalizar_1Button.setIcon(Toolbox.adjustImage("/img/Volver.png", 30, 30));
+                        finalizar_1Button.setIcon(Toolbox.adjustImage("/img/Guardar.png", 30, 30));
                         finalizar_1Button.setFocusPainted(false);
                         finalizar_1Button.setEnabled(false);
                         finalizar_1Button.addActionListener(new ActionListener() {
@@ -717,7 +759,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         finalizar_2Button.setBackground(Colores.principalBotones);
                         finalizar_2Button.setFont(Fuentes.getPrincipalFontSize(12, true));
                         finalizar_2Button.setForeground(Colores.white);
-                        finalizar_2Button.setIcon(Toolbox.adjustImage("/img/Volver.png", 30, 30));
+                        finalizar_2Button.setIcon(Toolbox.adjustImage("/img/Guardar.png", 30, 30));
                         finalizar_2Button.setFocusPainted(false);
                         finalizar_2Button.setEnabled(false);
                         finalizar_2Button.addActionListener(new ActionListener() {
@@ -802,7 +844,7 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         finalizar_3Button.setBackground(Colores.principalBotones);
                         finalizar_3Button.setFont(Fuentes.getPrincipalFontSize(12, true));
                         finalizar_3Button.setForeground(Colores.white);
-                        finalizar_3Button.setIcon(Toolbox.adjustImage("/img/Volver.png", 30, 30));
+                        finalizar_3Button.setIcon(Toolbox.adjustImage("/img/Guardar.png", 30, 30));
                         finalizar_3Button.setFocusPainted(false);
                         finalizar_3Button.setEnabled(false);
                         finalizar_3Button.addActionListener(new ActionListener() {
