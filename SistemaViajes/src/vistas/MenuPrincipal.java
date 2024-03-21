@@ -6,6 +6,8 @@ package vistas;
 
 import controladores.ControladorMoto;
 import controladores.ControladorVehiculo_1;
+import controladores.ControladorVehiculo_2;
+import controladores.ControladorVehiculo_3;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -561,10 +563,12 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                                 controlador1.start();
                                 break;
                             case 1:
-                                
+                                ControladorVehiculo_2 controlador2 = new ControladorVehiculo_2(MenuPrincipal.this);
+                                controlador2.start();
                                 break;
                             case 2:
-                                
+                                ControladorVehiculo_3 controlador3 = new ControladorVehiculo_3(MenuPrincipal.this);
+                                controlador3.start();
                                 break;
                             default:
                                 throw new AssertionError();
@@ -669,21 +673,172 @@ public class MenuPrincipal extends JFrame implements ActionListener{
                         
                         break;
                     case 1:
+                        viaje_2 = viajes.get(i_here);
+
+                        panel_Vehiculo_2 = new JPanel();
+                        panel_Vehiculo_2.setBounds(130, 70, 190, 50);
+                        panel_Vehiculo_2.setBackground(null);
+                        panel_Vehiculo_2.setLayout(null);
+
+                        gasolina_2Button = new JButton();
+                        gasolina_2Button.setBounds(0, 0, 50, 40);
+                        gasolina_2Button.setBackground(Colores.principalBotones);
+                        gasolina_2Button.setFont(Fuentes.getPrincipalFontSize(12, true));
+                        gasolina_2Button.setForeground(Colores.white);
+                        gasolina_2Button.setIcon(Toolbox.adjustImage("/img/Gasolina.png", 30, 30));
+                        gasolina_2Button.setFocusPainted(false);
+                        gasolina_2Button.setEnabled(false);
+                        gasolina_2Button.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                gasolinaDisponible_2 = true;
+                                gasolina_2Button.setEnabled(false);
+                            }
+                        });
+                        panel_Vehiculo_2.add(gasolina_2Button);
+
+                        retorno_2Button = new JButton();
+                        retorno_2Button.setBounds(820, 140, 50, 40);
+                        retorno_2Button.setBackground(Colores.principalBotones);
+                        retorno_2Button.setFont(Fuentes.getPrincipalFontSize(12, true));
+                        retorno_2Button.setForeground(Colores.white);
+                        retorno_2Button.setIcon(Toolbox.adjustImage("/img/Volver.png", 30, 30));
+                        retorno_2Button.setFocusPainted(false);
+                        retorno_2Button.setEnabled(false);
+                        retorno_2Button.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                volver_2 = true;
+                                retorno_2Button.setEnabled(false);
+                            }
+                        });
+                        smallPanel.add(retorno_2Button);
+
+                        finalizar_2Button = new JButton();
+                        finalizar_2Button.setBounds(820, 10, 50, 40);
+                        finalizar_2Button.setBackground(Colores.principalBotones);
+                        finalizar_2Button.setFont(Fuentes.getPrincipalFontSize(12, true));
+                        finalizar_2Button.setForeground(Colores.white);
+                        finalizar_2Button.setIcon(Toolbox.adjustImage("/img/Volver.png", 30, 30));
+                        finalizar_2Button.setFocusPainted(false);
+                        finalizar_2Button.setEnabled(false);
+                        finalizar_2Button.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                finalizar_2 = true;
+                                finalizar_2Button.setEnabled(false);
+                            }
+                        });
+                        smallPanel.add(finalizar_2Button);
+
+                        mensaje_2 = new JLabel();
+                        mensaje_2.setBounds(250, 10, 200, 190);
+                        mensaje_2.setVerticalAlignment(JLabel.TOP);
+                        mensaje_2.setVerticalTextPosition(JLabel.TOP);
+                        mensaje_2.setForeground(Colores.red);
+                        mensaje_2.setAlignmentY(TOP_ALIGNMENT);
+                        mensaje_2.setFont(Fuentes.getPrincipalFontSize(14, true));
+                        smallPanel.add(mensaje_2);
+
+                        infoLabel_2 = new JLabel("<html>" + "Recorrido: " + recorrido_1 + "<br>" + "Gasolina Actual: " + gasolina_2 + "</html>");
+                        infoLabel_2.setBounds(60, 0, 200, 190);
+                        infoLabel_2.setVerticalAlignment(JLabel.TOP);
+                        infoLabel_2.setVerticalTextPosition(JLabel.TOP);
+                        infoLabel_2.setAlignmentY(TOP_ALIGNMENT);
+                        infoLabel_2.setFont(Fuentes.getPrincipalFontSize(14, true));
+                        panel_Vehiculo_2.add(infoLabel_2);
+
+                        smallPanel.add(panel_Vehiculo_2);
+
                         vehiculoLabel_2 = new JLabel(Toolbox.adjustImage(viajes.get(i).getVehiculo().getIconoRuta(), 115, 66));
                         vehiculoLabel_2.setBounds(130, 120, 115, 66);
                         vehiculoLabel_2.setBorder(borde);
                         smallPanel.add(vehiculoLabel_2);
-                        
+
                         moto_rect2 = vehiculoLabel_2.getBounds();
+
+
                         
                         break;
                     case 2:
+                        viaje_3 = viajes.get(i_here);
+
+                        panel_Vehiculo_3 = new JPanel();
+                        panel_Vehiculo_3.setBounds(130, 70, 190, 50);
+                        panel_Vehiculo_3.setBackground(null);
+                        panel_Vehiculo_3.setLayout(null);
+
+                        gasolina_3Button = new JButton();
+                        gasolina_3Button.setBounds(0, 0, 50, 40);
+                        gasolina_3Button.setBackground(Colores.principalBotones);
+                        gasolina_3Button.setFont(Fuentes.getPrincipalFontSize(12, true));
+                        gasolina_3Button.setForeground(Colores.white);
+                        gasolina_3Button.setIcon(Toolbox.adjustImage("/img/Gasolina.png", 30, 30));
+                        gasolina_3Button.setFocusPainted(false);
+                        gasolina_3Button.setEnabled(false);
+                        gasolina_3Button.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                gasolinaDisponible_3 = true;
+                                gasolina_3Button.setEnabled(false);
+                            }
+                        });
+                        panel_Vehiculo_3.add(gasolina_3Button);
+
+                        retorno_3Button = new JButton();
+                        retorno_3Button.setBounds(820, 140, 50, 40);
+                        retorno_3Button.setBackground(Colores.principalBotones);
+                        retorno_3Button.setFont(Fuentes.getPrincipalFontSize(12, true));
+                        retorno_3Button.setForeground(Colores.white);
+                        retorno_3Button.setIcon(Toolbox.adjustImage("/img/Volver.png", 30, 30));
+                        retorno_3Button.setFocusPainted(false);
+                        retorno_3Button.setEnabled(false);
+                        retorno_3Button.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                volver_3 = true;
+                                retorno_3Button.setEnabled(false);
+                            }
+                        });
+                        smallPanel.add(retorno_3Button);
+
+                        finalizar_3Button = new JButton();
+                        finalizar_3Button.setBounds(820, 10, 50, 40);
+                        finalizar_3Button.setBackground(Colores.principalBotones);
+                        finalizar_3Button.setFont(Fuentes.getPrincipalFontSize(12, true));
+                        finalizar_3Button.setForeground(Colores.white);
+                        finalizar_3Button.setIcon(Toolbox.adjustImage("/img/Volver.png", 30, 30));
+                        finalizar_3Button.setFocusPainted(false);
+                        finalizar_3Button.setEnabled(false);
+                        finalizar_3Button.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                finalizar_3 = true;
+                                finalizar_3Button.setEnabled(false);
+                            }
+                        });
+                        smallPanel.add(finalizar_3Button);
+
+                        mensaje_3 = new JLabel();
+                        mensaje_3.setBounds(250, 10, 200, 190);
+                        mensaje_3.setVerticalAlignment(JLabel.TOP);
+                        mensaje_3.setVerticalTextPosition(JLabel.TOP);
+                        mensaje_3.setForeground(Colores.red);
+                        mensaje_3.setAlignmentY(TOP_ALIGNMENT);
+                        mensaje_3.setFont(Fuentes.getPrincipalFontSize(14, true));
+                        smallPanel.add(mensaje_3);
+
+                        infoLabel_3 = new JLabel("<html>" + "Recorrido: " + recorrido_1 + "<br>" + "Gasolina Actual: " + gasolina_3 + "</html>");
+                        infoLabel_3.setBounds(60, 0, 200, 190);
+                        infoLabel_3.setVerticalAlignment(JLabel.TOP);
+                        infoLabel_3.setVerticalTextPosition(JLabel.TOP);
+                        infoLabel_3.setAlignmentY(TOP_ALIGNMENT);
+                        infoLabel_3.setFont(Fuentes.getPrincipalFontSize(14, true));
+                        panel_Vehiculo_3.add(infoLabel_3);
+
+                        smallPanel.add(panel_Vehiculo_3);
+
                         vehiculoLabel_3 = new JLabel(Toolbox.adjustImage(viajes.get(i).getVehiculo().getIconoRuta(), 115, 66));
                         vehiculoLabel_3.setBounds(130, 120, 115, 66);
                         vehiculoLabel_3.setBorder(borde);
                         smallPanel.add(vehiculoLabel_3);
-                        
+
                         moto_rect3 = vehiculoLabel_3.getBounds();
+
 
                         
                         break;

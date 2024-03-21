@@ -6,6 +6,7 @@ package listas;
 
 import java.util.ArrayList;
 import modelos.Viaje;
+import utils.Toolbox;
 
 /**
  *
@@ -42,6 +43,7 @@ public class ListaViajesActivos {
         for (int i = 0; i < viajesActivos.size(); i++) {
             if(viajesActivos.get(i).getId() == id){
                 viajesActivos.remove(i);
+                Toolbox.SerializarActivos();
                 break;
             }
         }
@@ -49,12 +51,14 @@ public class ListaViajesActivos {
         public static void addViajeActivo(Viaje viajeActivo) {
         viajeActivo.setId(generarId());
         viajesActivos.add(viajeActivo);
+        Toolbox.SerializarActivos();
     }
     
     public static void editViajeActivo(Viaje viajeActivo, int id){
         for (int i = 0; i < viajesActivos.size(); i++) {
             if(viajesActivos.get(i).getId() == id){
                 viajesActivos.set(i, viajeActivo);
+                Toolbox.SerializarActivos();
                 break;
                 
             }
