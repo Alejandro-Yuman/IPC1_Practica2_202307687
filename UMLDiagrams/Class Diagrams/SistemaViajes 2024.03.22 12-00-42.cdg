@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="SistemaViajes">
+  <ClassDiagramComponents>
+    <Class name="ControladorMoto" package="controladores" visibility="public" xPosition="59.0" yPosition="1739.0">
+      <Fields>
+        <Field name="menu" type="MenuPrincipal" visibility="package"/>
+        <Field name="id_Controlar" type="int" visibility="package"/>
+        <Field name="posx_moto" type="int" visibility="package"/>
+        <Field name="running" type="boolean" visibility="private" isTransient="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MenuPrincipal" name="menu"/>
+          <Argument type="int" name="id"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="moverPrimerVehiculo" returnType="void" visibility="public"/>
+        <Method name="moverSegundoVehiculo" returnType="void" visibility="public"/>
+        <Method name="moverTercerVehiculo" returnType="void" visibility="public"/>
+        <Method name="stopThread" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ControladorVehiculo_1" package="controladores" visibility="public" xPosition="56.0" yPosition="20.0">
+      <Fields>
+        <Field name="menu" type="MenuPrincipal" visibility="package"/>
+        <Field name="posx_moto" type="int" visibility="package"/>
+        <Field name="posx_panel" type="int" visibility="package"/>
+        <Field name="running" type="boolean" visibility="private" isTransient="true"/>
+        <Field name="velocidad" type="int" visibility="package"/>
+        <Field name="cambioDistancia" type="double" visibility="package"/>
+        <Field name="moverDerecha" type="boolean" visibility="package"/>
+        <Field name="moverIzquierda" type="boolean" visibility="package"/>
+        <Field name="puedeAvanzar" type="boolean" visibility="package"/>
+        <Field name="capacidadMax" type="float" visibility="package"/>
+        <Field name="tanqueGastado" type="float" visibility="package"/>
+        <Field name="gasto" type="float" visibility="package"/>
+        <Field name="recorridoActual" type="int" visibility="package"/>
+        <Field name="recorridoRelativo" type="int" visibility="package"/>
+        <Field name="recorridoTotal" type="int" visibility="package"/>
+        <Field name="recorridoAcumulado" type="int" visibility="package"/>
+        <Field name="galConsumidos" type="float" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MenuPrincipal" name="menu"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="kill" returnType="void" visibility="public"/>
+        <Method name="moverDerecha" returnType="void" visibility="package"/>
+        <Method name="moverIzquierda" returnType="void" visibility="package"/>
+        <Method name="finalizar" returnType="void" visibility="package"/>
+      </Methods>
+    </Class>
+    <Class name="ControladorVehiculo_2" package="controladores" visibility="public" xPosition="56.0" yPosition="571.0">
+      <Fields>
+        <Field name="menu" type="MenuPrincipal" visibility="package"/>
+        <Field name="posx_moto" type="int" visibility="package"/>
+        <Field name="posx_panel" type="int" visibility="package"/>
+        <Field name="running" type="boolean" visibility="private" isTransient="true"/>
+        <Field name="velocidad" type="int" visibility="package"/>
+        <Field name="cambioDistancia" type="double" visibility="package"/>
+        <Field name="moverDerecha" type="boolean" visibility="package"/>
+        <Field name="moverIzquierda" type="boolean" visibility="package"/>
+        <Field name="puedeAvanzar" type="boolean" visibility="package"/>
+        <Field name="capacidadMax" type="float" visibility="package"/>
+        <Field name="tanqueGastado" type="float" visibility="package"/>
+        <Field name="gasto" type="float" visibility="package"/>
+        <Field name="recorridoActual" type="int" visibility="package"/>
+        <Field name="recorridoRelativo" type="int" visibility="package"/>
+        <Field name="recorridoTotal" type="int" visibility="package"/>
+        <Field name="recorridoAcumulado" type="int" visibility="package"/>
+        <Field name="galConsumidos" type="float" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MenuPrincipal" name="menu"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="kill" returnType="void" visibility="public"/>
+        <Method name="moverDerecha" returnType="void" visibility="package"/>
+        <Method name="moverIzquierda" returnType="void" visibility="package"/>
+        <Method name="finalizar" returnType="void" visibility="package"/>
+      </Methods>
+    </Class>
+    <Class name="ControladorVehiculo_3" package="controladores" visibility="public" xPosition="56.0" yPosition="1130.0">
+      <Fields>
+        <Field name="menu" type="MenuPrincipal" visibility="package"/>
+        <Field name="posx_moto" type="int" visibility="package"/>
+        <Field name="posx_panel" type="int" visibility="package"/>
+        <Field name="running" type="boolean" visibility="private" isTransient="true"/>
+        <Field name="velocidad" type="int" visibility="package"/>
+        <Field name="cambioDistancia" type="double" visibility="package"/>
+        <Field name="moverDerecha" type="boolean" visibility="package"/>
+        <Field name="moverIzquierda" type="boolean" visibility="package"/>
+        <Field name="puedeAvanzar" type="boolean" visibility="package"/>
+        <Field name="capacidadMax" type="float" visibility="package"/>
+        <Field name="tanqueGastado" type="float" visibility="package"/>
+        <Field name="gasto" type="float" visibility="package"/>
+        <Field name="recorridoActual" type="int" visibility="package"/>
+        <Field name="recorridoRelativo" type="int" visibility="package"/>
+        <Field name="recorridoTotal" type="int" visibility="package"/>
+        <Field name="recorridoAcumulado" type="int" visibility="package"/>
+        <Field name="galConsumidos" type="float" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MenuPrincipal" name="menu"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="kill" returnType="void" visibility="public"/>
+        <Method name="moverDerecha" returnType="void" visibility="package"/>
+        <Method name="moverIzquierda" returnType="void" visibility="package"/>
+        <Method name="finalizar" returnType="void" visibility="package"/>
+      </Methods>
+    </Class>
+    <Class name="ListaRutas" package="listas" visibility="public" xPosition="891.0" yPosition="1624.0">
+      <Fields>
+        <Field name="rutas" type="ArrayList&lt;Ruta&gt;" visibility="package" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="printRutas" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="getPuntos" returnType="ArrayList&lt;String&gt;" visibility="public" isStatic="true"/>
+        <Method name="getPuntosRelacionados" returnType="ArrayList&lt;String&gt;" visibility="public" isStatic="true">
+          <Argument type="String" name="punto"/>
+        </Method>
+        <Method name="searchRuta" returnType="Ruta" visibility="public" isStatic="true">
+          <Argument type="String" name="puntoI"/>
+          <Argument type="String" name="puntoF"/>
+        </Method>
+        <Method name="getRuta" returnType="Ruta" visibility="public" isStatic="true">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="eliminarRuta" returnType="void" visibility="public" isStatic="true">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="addRuta" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Ruta" name="rutaNueva"/>
+        </Method>
+        <Method name="editRuta" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Ruta" name="rutaNueva"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getRutas" returnType="ArrayList&lt;Ruta&gt;" visibility="public" isStatic="true"/>
+        <Method name="generarId" returnType="int" visibility="package" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="ListaVehiculos" package="listas" visibility="public" xPosition="1314.0" yPosition="1240.0">
+      <Fields>
+        <Field name="vehiculos" type="ArrayList&lt;Vehiculo&gt;" visibility="package" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="printRutas" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="setLista" returnType="void" visibility="public" isStatic="true">
+          <Argument type="ArrayList&lt;Vehiculo&gt;" name="listaAñadir"/>
+        </Method>
+        <Method name="getVehiculo" returnType="Vehiculo" visibility="public" isStatic="true">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getVehiculoByTipo" returnType="Vehiculo" visibility="public" isStatic="true">
+          <Argument type="String" name="tipo"/>
+        </Method>
+        <Method name="setActivoByTipo" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="tipo"/>
+          <Argument type="boolean" name="estado"/>
+        </Method>
+        <Method name="eliminarVehiculo" returnType="void" visibility="public" isStatic="true">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="addVehiculo" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Vehiculo" name="vehiculoNuevo"/>
+        </Method>
+        <Method name="editVehiculo" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Vehiculo" name="vehiculoNuevo"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getVehiculos" returnType="ArrayList&lt;Vehiculo&gt;" visibility="public" isStatic="true"/>
+        <Method name="getVehiculosActivos" returnType="ArrayList&lt;Vehiculo&gt;" visibility="public" isStatic="true"/>
+        <Method name="generarId" returnType="int" visibility="package" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="ListaViajesActivos" package="listas" visibility="public" xPosition="1239.0" yPosition="20.0">
+      <Fields>
+        <Field name="viajesActivos" type="ArrayList&lt;Viaje&gt;" visibility="package" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="printViajesActivos" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="setLista" returnType="void" visibility="public" isStatic="true">
+          <Argument type="ArrayList&lt;Viaje&gt;" name="listaAñadir"/>
+        </Method>
+        <Method name="getTamaño" returnType="int" visibility="public" isStatic="true"/>
+        <Method name="getViajeActivo" returnType="Viaje" visibility="public" isStatic="true">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="eliminarViajeActivo" returnType="void" visibility="public" isStatic="true">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="addViajeActivo" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Viaje" name="viajeActivo"/>
+        </Method>
+        <Method name="editViajeActivo" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Viaje" name="viajeActivo"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getViajesActivo" returnType="ArrayList&lt;Viaje&gt;" visibility="public" isStatic="true"/>
+        <Method name="generarId" returnType="int" visibility="package" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="ListaViajesTerminados" package="listas" visibility="public" xPosition="1553.0" yPosition="20.0">
+      <Fields>
+        <Field name="viajesTerminados" type="ArrayList&lt;Viaje&gt;" visibility="package" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="printViajesTerminados" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="setLista" returnType="void" visibility="public" isStatic="true">
+          <Argument type="ArrayList&lt;Viaje&gt;" name="listaAñadir"/>
+        </Method>
+        <Method name="getViajeTerminado" returnType="Viaje" visibility="public" isStatic="true">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="eliminarViajeTerminado" returnType="void" visibility="public" isStatic="true">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="addViajeTerminados" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Viaje" name="viajeTerminados"/>
+        </Method>
+        <Method name="editViajeTerminados" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Viaje" name="viajeTerminados"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getViajesTerminados" returnType="ArrayList&lt;Viaje&gt;" visibility="public" isStatic="true"/>
+        <Method name="generarId" returnType="int" visibility="package" isStatic="true"/>
+        <Method name="mandarSerializar" returnType="void" visibility="private" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Ruta" package="modelos" visibility="public" xPosition="436.0" yPosition="1624.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="puntoInicio" type="String" visibility="private"/>
+        <Field name="puntoFinal" type="String" visibility="private"/>
+        <Field name="distancia" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="puntoInicio"/>
+          <Argument type="String" name="puntoFinal"/>
+          <Argument type="int" name="distancia"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getPuntoInicio" returnType="String" visibility="public"/>
+        <Method name="setPuntoInicio" returnType="void" visibility="public">
+          <Argument type="String" name="puntoInicio"/>
+        </Method>
+        <Method name="getPuntoFinal" returnType="String" visibility="public"/>
+        <Method name="setPuntoFinal" returnType="void" visibility="public">
+          <Argument type="String" name="puntoFinal"/>
+        </Method>
+        <Method name="getDistancia" returnType="int" visibility="public"/>
+        <Method name="setDistancia" returnType="void" visibility="public">
+          <Argument type="int" name="distancia"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Vehiculo" package="modelos" visibility="public" xPosition="1680.0" yPosition="1240.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="consumo" type="float" visibility="private"/>
+        <Field name="capacidad" type="int" visibility="private"/>
+        <Field name="tipo" type="String" visibility="private"/>
+        <Field name="iconoRuta" type="String" visibility="private"/>
+        <Field name="enUso" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="float" name="consumo"/>
+          <Argument type="int" name="capacidad"/>
+          <Argument type="String" name="tipo"/>
+          <Argument type="String" name="iconoRuta"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="isEnUso" returnType="boolean" visibility="public"/>
+        <Method name="setEnUso" returnType="void" visibility="public">
+          <Argument type="boolean" name="enUso"/>
+        </Method>
+        <Method name="getIconoRuta" returnType="String" visibility="public"/>
+        <Method name="setIconoRuta" returnType="void" visibility="public">
+          <Argument type="String" name="iconoRuta"/>
+        </Method>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getConsumo" returnType="float" visibility="public"/>
+        <Method name="setConsumo" returnType="void" visibility="public">
+          <Argument type="int" name="consumo"/>
+        </Method>
+        <Method name="getCapacidad" returnType="int" visibility="public"/>
+        <Method name="setCapacidad" returnType="void" visibility="public">
+          <Argument type="int" name="capacidad"/>
+        </Method>
+        <Method name="getTipo" returnType="String" visibility="public"/>
+        <Method name="setTipo" returnType="void" visibility="public">
+          <Argument type="String" name="tipo"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Viaje" package="modelos" visibility="public" xPosition="1223.0" yPosition="384.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="puntoInicio" type="String" visibility="private"/>
+        <Field name="puntoFinal" type="String" visibility="private"/>
+        <Field name="vehiculo" type="Vehiculo" visibility="private"/>
+        <Field name="distancia" type="int" visibility="private"/>
+        <Field name="gasolinaConsumida" type="float" visibility="private"/>
+        <Field name="fechaInicio" type="LocalDateTime" visibility="private"/>
+        <Field name="fechaFinal" type="LocalDateTime" visibility="private"/>
+        <Field name="activo" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="puntoInicio"/>
+          <Argument type="String" name="puntoFinal"/>
+          <Argument type="Vehiculo" name="vehiculo"/>
+          <Argument type="int" name="distancia"/>
+          <Argument type="LocalDateTime" name="fechaInicio"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setDatosFinalizar" returnType="void" visibility="public">
+          <Argument type="LocalDateTime" name="fecha"/>
+          <Argument type="float" name="gas"/>
+          <Argument type="int" name="distancia"/>
+        </Method>
+        <Method name="isActivo" returnType="boolean" visibility="public"/>
+        <Method name="setActivo" returnType="void" visibility="public">
+          <Argument type="boolean" name="activo"/>
+        </Method>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getPuntoInicio" returnType="String" visibility="public"/>
+        <Method name="setPuntoInicio" returnType="void" visibility="public">
+          <Argument type="String" name="puntoInicio"/>
+        </Method>
+        <Method name="getPuntoFinal" returnType="String" visibility="public"/>
+        <Method name="setPuntoFinal" returnType="void" visibility="public">
+          <Argument type="String" name="puntoFinal"/>
+        </Method>
+        <Method name="getVehiculo" returnType="Vehiculo" visibility="public"/>
+        <Method name="setVehiculo" returnType="void" visibility="public">
+          <Argument type="Vehiculo" name="vehiculo"/>
+        </Method>
+        <Method name="getDistancia" returnType="int" visibility="public"/>
+        <Method name="setDistancia" returnType="void" visibility="public">
+          <Argument type="int" name="distancia"/>
+        </Method>
+        <Method name="getGasolinaConsumida" returnType="float" visibility="public"/>
+        <Method name="setGasolinaConsumida" returnType="void" visibility="public">
+          <Argument type="int" name="gasolinaConsumida"/>
+        </Method>
+        <Method name="getFechaInicio" returnType="LocalDateTime" visibility="public"/>
+        <Method name="setFechaInicio" returnType="void" visibility="public">
+          <Argument type="LocalDateTime" name="fechaInicio"/>
+        </Method>
+        <Method name="getFechaFinal" returnType="LocalDateTime" visibility="public"/>
+        <Method name="setFechaFinal" returnType="void" visibility="public">
+          <Argument type="LocalDateTime" name="fechaFinal"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SistemaViajes" package="sistemaviajes" visibility="public" xPosition="2256.0" yPosition="506.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Colores" package="utils" visibility="public" xPosition="2208.0" yPosition="636.0">
+      <Fields>
+        <Field name="white" type="Color" visibility="public" isStatic="true"/>
+        <Field name="black" type="Color" visibility="public" isStatic="true"/>
+        <Field name="red" type="Color" visibility="public" isStatic="true"/>
+        <Field name="principalBotones" type="Color" visibility="public" isStatic="true"/>
+        <Field name="principalBotonesSecundario" type="Color" visibility="public" isStatic="true"/>
+        <Field name="background" type="Color" visibility="public" isStatic="true"/>
+        <Field name="backgroundSecundario" type="Color" visibility="public" isStatic="true"/>
+        <Field name="backgroundPanel" type="Color" visibility="public" isStatic="true"/>
+        <Field name="tituloLetra" type="Color" visibility="public" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Fuentes" package="utils" visibility="public" xPosition="2149.0" yPosition="916.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getPrincipalFontSize" returnType="Font" visibility="public" isStatic="true">
+          <Argument type="int" name="size"/>
+          <Argument type="boolean" name="bold"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Toolbox" package="utils" visibility="public" xPosition="2128.0" yPosition="1227.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="adjustImage" returnType="ImageIcon" visibility="public" isStatic="true">
+          <Argument type="String" name="url"/>
+          <Argument type="int" name="ancho"/>
+          <Argument type="int" name="alto"/>
+        </Method>
+        <Method name="ImageIconSinDimensiones" returnType="ImageIcon" visibility="public" isStatic="true">
+          <Argument type="String" name="url"/>
+        </Method>
+        <Method name="lecturaCSV" returnType="void" visibility="public" isStatic="true">
+          <Argument type="File" name="archivoCSV"/>
+        </Method>
+        <Method name="SerializarTerminados" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="DeserializarTerminados" returnType="ArrayList&lt;Viaje&gt;" visibility="public" isStatic="true"/>
+        <Method name="SerializarActivos" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="DeserializarActivos" returnType="ArrayList&lt;Viaje&gt;" visibility="public" isStatic="true"/>
+        <Method name="SerializarVehiculos" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="DeserializarVehiculos" returnType="ArrayList&lt;Vehiculo&gt;" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Alerta" package="vistas" visibility="public" xPosition="2164.0" yPosition="1073.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="mensajeMostrar"/>
+          <Argument type="boolean" name="success"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MenuPrincipal" package="vistas" visibility="public" xPosition="507.0" yPosition="20.0">
+      <Fields>
+        <Field name="tabbedPane" type="JTabbedPane" visibility="package"/>
+        <Field name="panelInicio" type="JPanel" visibility="package"/>
+        <Field name="panelRutas" type="JPanel" visibility="package"/>
+        <Field name="panelViajes" type="JPanel" visibility="package"/>
+        <Field name="panelHistorial" type="JPanel" visibility="package"/>
+        <Field name="inicioActive" type="boolean" visibility="package"/>
+        <Field name="rutasActive" type="boolean" visibility="package"/>
+        <Field name="viajesActive" type="boolean" visibility="package"/>
+        <Field name="historialActive" type="boolean" visibility="package"/>
+        <Field name="idField" type="JTextField" visibility="package"/>
+        <Field name="distanciaField" type="JTextField" visibility="package"/>
+        <Field name="puntoInicialCombo" type="JComboBox" visibility="package"/>
+        <Field name="puntoFinalCombo" type="JComboBox" visibility="package"/>
+        <Field name="tipoCarroCombo" type="JComboBox" visibility="package"/>
+        <Field name="panel_Vehiculo_1" type="JPanel" visibility="public"/>
+        <Field name="panel_Vehiculo_2" type="JPanel" visibility="public"/>
+        <Field name="panel_Vehiculo_3" type="JPanel" visibility="public"/>
+        <Field name="vehiculoLabel_1" type="JLabel" visibility="public"/>
+        <Field name="vehiculoLabel_2" type="JLabel" visibility="public"/>
+        <Field name="vehiculoLabel_3" type="JLabel" visibility="public"/>
+        <Field name="mensaje_1" type="JLabel" visibility="public"/>
+        <Field name="mensaje_2" type="JLabel" visibility="public"/>
+        <Field name="mensaje_3" type="JLabel" visibility="public"/>
+        <Field name="moviendo_1" type="boolean" visibility="public"/>
+        <Field name="moviendo_2" type="boolean" visibility="public"/>
+        <Field name="moviendo_3" type="boolean" visibility="public"/>
+        <Field name="moto_rect1" type="Rectangle" visibility="public"/>
+        <Field name="moto_rect2" type="Rectangle" visibility="public"/>
+        <Field name="moto_rect3" type="Rectangle" visibility="public"/>
+        <Field name="viaje_1" type="Viaje" visibility="public"/>
+        <Field name="viaje_2" type="Viaje" visibility="public"/>
+        <Field name="viaje_3" type="Viaje" visibility="public"/>
+        <Field name="recorrido_1" type="int" visibility="public"/>
+        <Field name="recorrido_2" type="int" visibility="public"/>
+        <Field name="recorrido_3" type="int" visibility="public"/>
+        <Field name="gasolina_1" type="int" visibility="public"/>
+        <Field name="gasolina_2" type="int" visibility="public"/>
+        <Field name="gasolina_3" type="int" visibility="public"/>
+        <Field name="gasolina_1Button" type="JButton" visibility="public"/>
+        <Field name="gasolina_2Button" type="JButton" visibility="public"/>
+        <Field name="gasolina_3Button" type="JButton" visibility="public"/>
+        <Field name="retorno_1Button" type="JButton" visibility="public"/>
+        <Field name="retorno_2Button" type="JButton" visibility="public"/>
+        <Field name="retorno_3Button" type="JButton" visibility="public"/>
+        <Field name="finalizar_1Button" type="JButton" visibility="public"/>
+        <Field name="finalizar_2Button" type="JButton" visibility="public"/>
+        <Field name="finalizar_3Button" type="JButton" visibility="public"/>
+        <Field name="finalizar_1" type="boolean" visibility="public"/>
+        <Field name="finalizar_2" type="boolean" visibility="public"/>
+        <Field name="finalizar_3" type="boolean" visibility="public"/>
+        <Field name="volver_1" type="boolean" visibility="public"/>
+        <Field name="volver_2" type="boolean" visibility="public"/>
+        <Field name="volver_3" type="boolean" visibility="public"/>
+        <Field name="gasolinaDisponible_1" type="boolean" visibility="public"/>
+        <Field name="gasolinaDisponible_2" type="boolean" visibility="public"/>
+        <Field name="gasolinaDisponible_3" type="boolean" visibility="public"/>
+        <Field name="infoLabel_1" type="JLabel" visibility="public"/>
+        <Field name="infoLabel_2" type="JLabel" visibility="public"/>
+        <Field name="infoLabel_3" type="JLabel" visibility="public"/>
+        <Field name="metaFinal" type="Rectangle" visibility="public"/>
+        <Field name="metaInicial" type="Rectangle" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="panelBienvenida" returnType="void" visibility="package"/>
+        <Method name="panelRutas" returnType="void" visibility="package"/>
+        <Method name="panelViajes" returnType="void" visibility="package"/>
+        <Method name="panelHistorial" returnType="void" visibility="package"/>
+        <Method name="botonSeleccionado" returnType="void" visibility="package">
+          <Argument type="int" name="num"/>
+        </Method>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="viajesActivos" source="listas.ListaViajesActivos" target="modelos.Viaje" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Viaje&gt;"/>
+    <UseRelation source="modelos.Viaje" target="modelos.Vehiculo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="menu" source="controladores.ControladorVehiculo_3" target="vistas.MenuPrincipal" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="utils.Toolbox" target="modelos.Viaje" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="menu" source="controladores.ControladorVehiculo_2" target="vistas.MenuPrincipal" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="vehiculos" source="listas.ListaVehiculos" target="modelos.Vehiculo" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Vehiculo&gt;"/>
+    <UseRelation source="listas.ListaVehiculos" target="modelos.Vehiculo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="listas.ListaRutas" target="modelos.Ruta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="rutas" source="listas.ListaRutas" target="modelos.Ruta" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Ruta&gt;"/>
+    <UseRelation source="utils.Toolbox" target="modelos.Vehiculo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="menu" source="controladores.ControladorMoto" target="vistas.MenuPrincipal" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="vehiculo" source="modelos.Viaje" target="modelos.Vehiculo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="viaje_1" source="vistas.MenuPrincipal" target="modelos.Viaje" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="viajesTerminados" source="listas.ListaViajesTerminados" target="modelos.Viaje" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Viaje&gt;"/>
+    <HasRelation name="viaje_3" source="vistas.MenuPrincipal" target="modelos.Viaje" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="viaje_2" source="vistas.MenuPrincipal" target="modelos.Viaje" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="menu" source="controladores.ControladorVehiculo_1" target="vistas.MenuPrincipal" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="listas.ListaViajesActivos" target="modelos.Viaje" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="listas.ListaViajesTerminados" target="modelos.Viaje" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
